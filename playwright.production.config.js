@@ -4,7 +4,9 @@ import baseConfig from './playwright.config.js'
 export default defineConfig({
   ...baseConfig,
   testDir: '.',
-  testMatch: ['tests/**/*.spec.js', 'tests-production/**/*.spec.js'],
+  // Source-module analytics tests run against Vite in the browser suite. The
+  // production image intentionally contains only compiled assets, not /src.
+  testMatch: ['tests/sandbox.spec.js', 'tests-production/**/*.spec.js'],
   testIgnore: ['claude-security-review/**'],
   use: {
     ...baseConfig.use,

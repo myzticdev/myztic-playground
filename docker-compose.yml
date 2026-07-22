@@ -3,6 +3,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        VITE_ANALYTICS_PROVIDER: ${VITE_ANALYTICS_PROVIDER:-none}
+        VITE_ANALYTICS_SITE_ID: ${VITE_ANALYTICS_SITE_ID:-}
+        VITE_ANALYTICS_SCRIPT_URL: ${VITE_ANALYTICS_SCRIPT_URL:-}
+        VITE_ANALYTICS_HOST: ${VITE_ANALYTICS_HOST:-}
     container_name: myztic-playground
     restart: unless-stopped
     read_only: true

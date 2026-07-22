@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { strToU8, zipSync } from 'fflate'
+import { trackAnalyticsEvent } from './analytics'
 
 type Language = 'html' | 'css' | 'javascript'
 
@@ -133,12 +134,14 @@ export default function App() {
     setPreviewCode(code)
     setIsRunning(true)
     setRunCount((count) => count + 1)
+    trackAnalyticsEvent('run_preview')
   }
 
   const stop = () => {
     setPreviewCode(null)
     setIsRunning(false)
     setRunCount((count) => count + 1)
+    trackAnalyticsEvent('stop_preview')
   }
 
   const resetCode = () => {
@@ -146,6 +149,7 @@ export default function App() {
     setPreviewCode(starterCode)
     setIsRunning(true)
     setRunCount((count) => count + 1)
+    trackAnalyticsEvent('reset_code')
   }
 
   const downloadZip = () => {
@@ -161,6 +165,7 @@ export default function App() {
     link.download = 'myztic-playground.zip'
     link.click()
     window.setTimeout(() => URL.revokeObjectURL(url), 0)
+    trackAnalyticsEvent('download_zip')
   }
 
   return (
@@ -177,6 +182,7 @@ export default function App() {
               href={GITHUB_REPOSITORY_URL}
               target="_blank"
               rel="noreferrer"
+              onClick={() => trackAnalyticsEvent('open_github')}
               aria-label="Open GitHub repository"
               title="Open GitHub repository"
             >
