@@ -9,6 +9,8 @@ test('main document has production security headers', async ({ request }) => {
   const headers = response.headers()
   expect(headers['content-security-policy']).toContain("script-src 'self'")
   expect(headers['content-security-policy']).not.toContain("script-src 'self' 'unsafe-inline'")
+  expect(headers['content-security-policy']).toContain('https://cloud.umami.is')
+  expect(headers['content-security-policy']).toContain('https://www.googletagmanager.com')
   expect(headers['x-frame-options']).toBe('DENY')
   expect(headers['x-content-type-options']).toBe('nosniff')
   expect(headers['referrer-policy']).toBe('no-referrer')
@@ -22,6 +24,8 @@ test('preview document receives its isolated policy and remains embeddable', asy
 
   const headers = response.headers()
   expect(headers['content-security-policy']).toBe(previewCsp)
+  expect(headers['content-security-policy']).not.toContain('google')
+  expect(headers['content-security-policy']).not.toContain('umami')
   expect(headers['x-frame-options']).toBeUndefined()
   expect(headers['x-content-type-options']).toBe('nosniff')
   expect(headers['referrer-policy']).toBe('no-referrer')

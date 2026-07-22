@@ -178,6 +178,8 @@ test('downloads the current editors as a working three-file ZIP', async ({ page 
   expect(html).toContain('<link rel="stylesheet" href="styles.css">')
   expect(html).toContain('<script src="script.js" defer></script>')
   expect(html).toContain('Downloaded project')
+  expect(html).not.toContain('googletagmanager')
+  expect(html).not.toContain('umami')
   expect(strFromU8(files['styles.css'])).toBe('#downloaded-project { color: purple; }')
   expect(strFromU8(files['script.js'])).toContain("dataset.ready = 'true'")
 })

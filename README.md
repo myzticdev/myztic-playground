@@ -32,6 +32,48 @@ docker compose up --build -d
 
 Open `http://localhost:8080`. Stop the service with `docker compose down`.
 
+## Optional deployment analytics
+
+Analytics is disabled by default. Official or individual deployments can enable
+one validated provider at build time without placing their configuration in the
+repository or downloaded projects. Tracking runs only when the configured host
+exactly matches the browser hostname and the visitor has not enabled Do Not
+Track or Global Privacy Control.
+
+Umami Cloud:
+
+```env
+VITE_ANALYTICS_PROVIDER=umami
+VITE_ANALYTICS_SITE_ID=your-website-id
+VITE_ANALYTICS_SCRIPT_URL=https://cloud.umami.is/script.js
+VITE_ANALYTICS_HOST=playground.example.com
+```
+
+Google Analytics 4:
+
+```env
+VITE_ANALYTICS_PROVIDER=google
+VITE_ANALYTICS_SITE_ID=G-ABC123XYZ
+VITE_ANALYTICS_SCRIPT_URL=
+VITE_ANALYTICS_HOST=playground.example.com
+```
+
+For Dokploy Compose deployments, place these values in the application's
+**Environment** editor and redeploy with a rebuild. The Compose file passes them
+as Docker build arguments because Vite configuration is compiled into the static
+bundle. `VITE_*` values are public browser configuration and must never contain
+passwords, API tokens, or other secrets.
+
+Analytics providers may have different cookie, consent, disclosure, and data
+processing requirements. The deployment owner is responsible for configuring
+the selected provider and any consent flow required by their visitors' laws and
+jurisdictions.
+
+Supported Umami script locations are Umami Cloud or a same-origin path. Custom
+external Umami hosts require an intentional CSP update in `index.html` and
+`nginx.conf`. The sandboxed preview retains `connect-src 'none'`, and ZIP exports
+contain no playground analytics configuration.
+
 ## Deploy on Dokploy
 
 1. Create a new application in Dokploy and connect this Git repository.

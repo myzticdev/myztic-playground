@@ -12,6 +12,15 @@ The production regression suite additionally verifies the actual nginx response
 headers and Docker-served application. Start the container with
 `docker compose up --build -d`, then run `npm run test:e2e:production`.
 
+## Optional analytics boundary
+
+Deployment analytics is disabled by default and is limited to the main
+application. The loader accepts only Umami or Google, validates the provider's
+identifier and script origin, requires an exact configured hostname match, and
+honors Do Not Track and Global Privacy Control. Analytics configuration is public
+build-time data, never a place for secrets. User previews retain `connect-src
+'none'`, and exported projects never receive the playground's tracker.
+
 ## Known limitations
 
 The sandbox is a capability boundary, not a resource limit. An infinite loop, runaway allocation, or expensive rendering operation can freeze or crash the visitor's own browser tab, sometimes before Stop can respond. Run untrusted snippets cautiously and use a current browser.
