@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Myztic Playground spark">
+  <defs>
+    <radialGradient id="background" cx="38%" cy="30%" r="78%">
+      <stop offset="0" stop-color="#55317d"/>
+      <stop offset="0.72" stop-color="#1b1527"/>
+      <stop offset="1" stop-color="#100d18"/>
+    </radialGradient>
+    <linearGradient id="spark" x1="20" y1="16" x2="45" y2="48" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#c99aff"/>
+    </linearGradient>
+  </defs>
+  <rect x="4.5" y="4.5" width="55" height="55" rx="16" fill="url(#background)" stroke="#9b5cff" stroke-width="2"/>
+  <path d="M32 13c2.2 10.7 8.3 16.8 19 19-10.7 2.2-16.8 8.3-19 19-2.2-10.7-8.3-16.8-19-19 10.7-2.2 16.8-8.3 19-19Z" fill="url(#spark)"/>
+</svg>
