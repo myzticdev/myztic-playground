@@ -13,10 +13,11 @@ ENV VITE_ANALYTICS_PROVIDER=$VITE_ANALYTICS_PROVIDER
 ENV VITE_ANALYTICS_SITE_ID=$VITE_ANALYTICS_SITE_ID
 ENV VITE_ANALYTICS_SCRIPT_URL=$VITE_ANALYTICS_SCRIPT_URL
 ENV VITE_ANALYTICS_HOST=$VITE_ANALYTICS_HOST
+RUN node scripts/render-nginx-config.mjs nginx.conf /app/generated-nginx.conf
 RUN npm run build
 
 FROM nginx:1.30.4-alpine
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/generated-nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/dist /usr/share/nginx/html
 
 EXPOSE 80

@@ -57,7 +57,9 @@ function resolveUmamiScriptUrl(configuredUrl: string) {
   try {
     const url = new URL(requestedUrl, window.location.origin)
     if (url.origin === window.location.origin && url.protocol === window.location.protocol) return url.href
-    if (url.href === UMAMI_CLOUD_SCRIPT) return url.href
+    // External Umami origins are authorized by the deployment owner at build
+    // time and constrained again by the generated main-document CSP.
+    if (url.protocol === 'https:' && !url.username && !url.password) return url.href
   } catch {
     return null
   }
