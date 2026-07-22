@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      This separate execution document permits only editor-provided inline code
+      and data/blob media. Network access, frames, objects, base URLs, and form
+      submissions are blocked by this policy and by the parent iframe sandbox.
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; media-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none';" />
+    <title>Myztic isolated preview</title>
+    <style>
+      html { color-scheme: dark; }
+      body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #0d0f15; color: #757b8d; font: 14px system-ui; }
+      p { padding: 2rem; text-align: center; }
+    </style>
+  </head>
+  <body>
+    <p>Preparing isolated preview…</p>
+    <script>
+      (() => {
+        'use strict';
+
+        const PREVIEW_CSP = "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; media-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none';";
+        let handled = false;
+
+        function writeDocument(html, css, javascript) {
+          // Closing tags are escaped so editor content cannot terminate the
+          // wrapper style/script elements early. User HTML remains intentionally
+          // unsanitized inside this opaque-origin, capability-restricted sandbox.
+          const safeCss = css.replace(/<\/style/gi, '<\\/style');
+          const safeJavaScript = javascript.replace(/<\/script/gi, '<\\/script');
+          const scriptEnd = '</scr' + 'ipt>';
+          const documentHtml = '<!doctype html><html><head><meta charset="utf-8">' +
+            '<meta name="viewport" content="width=device-width,initial-scale=1">' +
+            '<meta http-equiv="Content-Security-Policy" content="' + PREVIEW_CSP + '">' +
+            '<style>' + safeCss + '</style></head><body>' + html +
+            '<script>' + safeJavaScript + scriptEnd + '</body></html>';
+
+          document.open();
+          document.write(documentHtml);
+          document.close();
+        }
+
+        window.addEventListener('message', (event) => {
+          if (handled || event.source !== parent || !event.data || typeof event.data.type !== 'string') return;
+
+          if (event.data.type === 'myztic:stop') {
+            handled = true;
+            document.body.innerHTML = '<p>Preview stopped. Press Run when you’re ready.</p>';
+            return;
+          }
+
+          const code = event.data.code;
+          if (
+            event.data.type !== 'myztic:run' ||
+            !code ||
+            typeof code.html !== 'string' ||
+            typeof code.css !== 'string' ||
+            typeof code.javascript !== 'string'
+          ) return;
+
+          handled = true;
+          writeDocument(code.html, code.css, code.javascript);
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+services:
+  myztic-playground:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: myztic-playground
+    restart: unless-stopped
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: 128m
+    pids_limit: 100
+    tmpfs:
+      - /tmp
+      - /var/cache/nginx
+      - /var/run
+    ports:
+      - "8080:80"
