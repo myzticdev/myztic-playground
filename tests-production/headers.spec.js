@@ -18,6 +18,20 @@ test('main document has production security headers', async ({ request }) => {
   expect(headers['strict-transport-security']).toBe('max-age=31536000')
 })
 
+test('default production build does not load an analytics tracker', async ({ page }) => {
+  const analyticsRequests = []
+  page.on('request', (request) => {
+    if (/cloud\.umami\.is|googletagmanager\.com|google-analytics\.com/i.test(request.url())) {
+      analyticsRequests.push(request.url())
+    }
+  })
+
+  await page.goto('/')
+
+  await expect(page.locator('script[data-myztic-analytics]')).toHaveCount(0)
+  expect(analyticsRequests).toEqual([])
+})
+
 test('preview document receives its isolated policy and remains embeddable', async ({ request }) => {
   const response = await request.get('/preview.html')
   expect(response.ok()).toBe(true)
