@@ -61,17 +61,41 @@ test('loads a validated Google Analytics measurement ID', async ({ page }) => {
   ))).toBe(true)
 })
 
-test('rejects mismatched hosts, invalid IDs, and arbitrary Umami script origins', async ({ page }) => {
+test('accepts an owner-configured HTTPS Umami host', async ({ page }) => {
+  await page.route('https://analytics.example.com/script.js', (route) => route.fulfill({
+    contentType: 'application/javascript',
+    body: 'window.umami = { track() {} };',
+  }))
+
+  const result = await page.evaluate(async () => {
+    const { initializeAnalytics } = await import('/src/analytics.ts')
+    return initializeAnalytics({
+      provider: 'umami',
+      siteId: '12345678-abcd-1234-abcd-123456789abc',
+      scriptUrl: 'https://analytics.example.com/script.js',
+      host: window.location.hostname,
+    })
+  })
+
+  expect(result).toBe('umami')
+  await expect(page.locator('script[data-myztic-analytics="umami"]')).toHaveAttribute(
+    'src',
+    'https://analytics.example.com/script.js',
+  )
+})
+
+test('rejects mismatched hosts, invalid IDs, and unsafe Umami script URLs', async ({ page }) => {
   const results = await page.evaluate(async () => {
     const { initializeAnalytics } = await import('/src/analytics.ts')
     return [
       initializeAnalytics({ provider: 'google', siteId: 'G-ABC123XYZ', scriptUrl: '', host: 'wrong.example' }),
       initializeAnalytics({ provider: 'google', siteId: 'not-a-google-id', scriptUrl: '', host: window.location.hostname }),
-      initializeAnalytics({ provider: 'umami', siteId: '12345678', scriptUrl: 'https://evil.example/script.js', host: window.location.hostname }),
+      initializeAnalytics({ provider: 'umami', siteId: '12345678', scriptUrl: 'http://analytics.example/script.js', host: window.location.hostname }),
+      initializeAnalytics({ provider: 'umami', siteId: '12345678', scriptUrl: 'https://user:pass@analytics.example/script.js', host: window.location.hostname }),
     ]
   })
 
-  expect(results).toEqual(['disabled', 'disabled', 'disabled'])
+  expect(results).toEqual(['disabled', 'disabled', 'disabled', 'disabled'])
   await expect(page.locator('script[data-myztic-analytics]')).toHaveCount(0)
 })
 

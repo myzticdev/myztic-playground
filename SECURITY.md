@@ -18,8 +18,10 @@ Deployment analytics is disabled by default and is limited to the main
 application. The loader accepts only Umami or Google, validates the provider's
 identifier and script origin, requires an exact configured hostname match, and
 honors Do Not Track and Global Privacy Control. Analytics configuration is public
-build-time data, never a place for secrets. User previews retain `connect-src
-'none'`, and exported projects never receive the playground's tracker.
+build-time data, never a place for secrets. For self-hosted Umami, the build
+validates the configured HTTPS script URL and derives its origin for the main
+document's CSP; the URL is not a general runtime bypass. User previews retain
+`connect-src 'none'`, and exported projects never receive the playground's tracker.
 
 ## Known limitations
 

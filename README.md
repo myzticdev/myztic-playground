@@ -49,6 +49,16 @@ VITE_ANALYTICS_SCRIPT_URL=https://cloud.umami.is/script.js
 VITE_ANALYTICS_HOST=playground.example.com
 ```
 
+Self-hosted Umami uses the same variables and accepts any explicitly configured
+HTTPS tracker URL:
+
+```env
+VITE_ANALYTICS_PROVIDER=umami
+VITE_ANALYTICS_SITE_ID=your-website-id
+VITE_ANALYTICS_SCRIPT_URL=https://analytics.example.com/script.js
+VITE_ANALYTICS_HOST=playground.example.com
+```
+
 Google Analytics 4:
 
 ```env
@@ -69,10 +79,12 @@ processing requirements. The deployment owner is responsible for configuring
 the selected provider and any consent flow required by their visitors' laws and
 jurisdictions.
 
-Supported Umami script locations are Umami Cloud or a same-origin path. Custom
-external Umami hosts require an intentional CSP update in `index.html` and
-`nginx.conf`. The sandboxed preview retains `connect-src 'none'`, and ZIP exports
-contain no playground analytics configuration.
+Self-hosted Umami HTTPS URLs are supported without editing the repository. The
+build derives the script origin from `VITE_ANALYTICS_SCRIPT_URL` and grants only
+that origin access in the main document's generated CSP. Empty/default builds
+contain no analytics provider origins. Unsafe HTTP URLs and URLs containing
+credentials fail validation. The sandboxed preview retains `connect-src 'none'`,
+and ZIP exports contain no playground analytics configuration.
 
 ## Deploy on Dokploy
 
