@@ -16,10 +16,17 @@ test('serves a complete Spanish entry page with reciprocal language signals', as
 test('language switcher keeps the equivalent page and query string', async ({ page }) => {
   await page.goto('/es/for-teachers')
   await expect(page.getByRole('heading', { level: 1 })).toContainText('estudiantes y docentes')
-  await expect(page.getByRole('navigation', { name: 'Idioma' }).getByRole('link', { name: 'EN' })).toHaveAttribute('href', '/for-teachers')
+  const spanishMenu = page.getByRole('navigation', { name: 'Idioma' })
+  await spanishMenu.locator('summary').click()
+  await expect(spanishMenu.getByRole('link', { name: 'English' })).toBeVisible()
+  await expect(spanishMenu.getByRole('link', { name: 'Español' })).toHaveAttribute('aria-current', 'page')
+  await expect(spanishMenu.getByRole('link', { name: 'English' })).toHaveAttribute('href', '/for-teachers')
 
   await page.goto('/app?example=counter')
-  await expect(page.getByRole('navigation', { name: 'Language' }).getByRole('link', { name: 'ES' })).toHaveAttribute('href', '/es/app?example=counter')
+  const englishMenu = page.getByRole('navigation', { name: 'Language' })
+  await englishMenu.locator('summary').click()
+  await expect(englishMenu.getByRole('link', { name: 'Español' })).toBeVisible()
+  await expect(englishMenu.getByRole('link', { name: 'Español' })).toHaveAttribute('href', '/es/app?example=counter')
 })
 
 test('localizes the playground interface while preserving example behavior', async ({ page }) => {
