@@ -1,0 +1,38 @@
+# Myztic Playground
+
+> Myztic Playground es un editor gratuito de HTML, CSS y JavaScript que no requiere registro. Incluye vista previa aislada, guardado local en el navegador y exportación ZIP.
+
+Myztic Playground ejecuta HTML, CSS y JavaScript del navegador. No ofrece ejecución backend, paquetes npm, sincronización de proyectos en la nube, perfiles públicos ni colaboración. El proyecto más reciente se guarda en el perfil actual del navegador; la exportación ZIP es la copia portátil recomendada.
+
+## Idiomas
+
+- [Español](https://playground.myztic.dev/es): Edición completa en español.
+- [English](https://playground.myztic.dev/): Sitio predeterminado en inglés.
+- [llms.txt in English](https://playground.myztic.dev/llms.txt): Guía del producto en inglés.
+
+## Páginas principales
+
+- [Abrir el editor](https://playground.myztic.dev/es/app): Escribe y ejecuta HTML, CSS y JavaScript.
+- [Ejemplos](https://playground.myztic.dev/es/examples): Modifica seis proyectos frontend.
+- [Para estudiantes y docentes](https://playground.myztic.dev/es/for-teachers): Uso en clases y talleres.
+- [Aprender HTML, CSS y JavaScript](https://playground.myztic.dev/es/learn/html-css-js-playground): Flujo de práctica para principiantes.
+- [Exportación ZIP](https://playground.myztic.dev/es/export-html-css-js-zip): Descarga index.html, styles.css y script.js.
+- [Seguridad del sandbox](https://playground.myztic.dev/es/safe-javascript-playground): Aislamiento y limitaciones.
+- [Privacidad](https://playground.myztic.dev/es/privacy): Guardado local y tratamiento de datos.
+- [Guardado local](https://playground.myztic.dev/es/local-save-code-playground): Cómo funciona el almacenamiento del navegador.
+
+## Comparativas
+
+- [Myztic Playground frente a CodePen](https://playground.myztic.dev/es/alternatives/codepen)
+- [Myztic Playground frente a JSFiddle](https://playground.myztic.dev/es/alternatives/jsfiddle)
+- [CodePen, JSFiddle o Myztic Playground](https://playground.myztic.dev/es/codepen-vs-jsfiddle-vs-myztic-playground)
+- [Mejor editor gratuito sin registro](https://playground.myztic.dev/es/best-free-html-css-js-playground-no-signup)
+
+## Políticas y proyecto
+
+- [Privacidad](https://playground.myztic.dev/es/privacy)
+- [Sandbox y límites de JavaScript](https://playground.myztic.dev/es/safe-javascript-playground)
+- [Registro de cambios](https://playground.myztic.dev/es/changelog)
+- [Acerca de Myztic Playground](https://playground.myztic.dev/es/about)
+- [Sitemap bilingüe](https://playground.myztic.dev/sitemap.xml)
+- [Código fuente](https://github.com/myzticdev/myztic-playground)

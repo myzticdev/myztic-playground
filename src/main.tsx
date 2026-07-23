@@ -5,7 +5,8 @@ import {
   AboutPage, BeginnerPlaygroundPage, BestFreePlaygroundPage, BrowserFrontendPage,
   ChangelogPage, CodePenPage, ComparisonHubPage, DownloadProjectPage, ExamplesPage,
   ExportPage, JsFiddlePage, LearnPage, LiveJavascriptPage, LocalSavePage, PrivacyPage,
-  SafeJavascriptPage, SecurityPage, TeachersPage,
+  SafeJavascriptPage, SecurityPage, SpanishExamplesPage, SpanishGuidePage, TeachersPage,
+  localizedPath, spanishPages, type Locale,
 } from './MarketingPages'
 import './styles.css'
 import { initializeAnalytics } from './analytics'
@@ -15,7 +16,13 @@ initializeAnalytics()
 const baseUrl = 'https://playground.myztic.dev'
 const path = window.location.pathname.replace(/\/$/, '') || '/'
 
-type Route = { Page: ComponentType; title: string; description: string; schemaType?: 'Article' | 'TechArticle' | 'WebPage' }
+type Route = {
+  Page: ComponentType
+  title: string
+  description: string
+  schemaType?: 'Article' | 'TechArticle' | 'WebPage' | 'WebApplication'
+  locale?: Locale
+}
 
 const routes: Record<string, Route> = {
   '/app': { Page: App, title: 'HTML, CSS & JavaScript Editor | Myztic Playground', description: 'Write HTML, CSS, and JavaScript with live preview, local browser save, and ZIP export. Free and no signup required.' },
@@ -39,9 +46,40 @@ const routes: Record<string, Route> = {
   '/changelog': { Page: ChangelogPage, title: 'Changelog | Myztic Playground', description: 'See recent improvements to Myztic Playground, including examples, sandbox security, local saving, and ZIP export.' },
 }
 
+const SpanishAppPage = () => <App locale="es" />
+
+Object.entries(spanishPages).forEach(([routePath, page]) => {
+  const SpanishRoutePage = routePath === '/es/app'
+    ? SpanishAppPage
+    : routePath === '/es/examples'
+      ? SpanishExamplesPage
+      : () => <SpanishGuidePage routePath={routePath} />
+  routes[routePath] = {
+    Page: SpanishRoutePage,
+    title: page.title,
+    description: page.description,
+    schemaType: page.schemaType,
+    locale: 'es',
+  }
+})
+
+function setAlternateLink(hreflang: string, href: string) {
+  let link = document.querySelector<HTMLLinkElement>(`link[rel="alternate"][hreflang="${hreflang}"]`)
+  if (!link) {
+    link = document.createElement('link')
+    link.rel = 'alternate'
+    link.hreflang = hreflang
+    document.head.append(link)
+  }
+  link.href = href
+}
+
 function applyRouteMetadata(routePath: string, route: Route) {
   document.title = route.title
+  document.documentElement.lang = route.locale ?? 'en'
   const canonicalUrl = `${baseUrl}${routePath}`
+  const englishPath = localizedPath(routePath, 'en')
+  const spanishPath = localizedPath(englishPath, 'es')
   const setMeta = (selector: string, attribute: string, value: string) => {
     document.querySelector(selector)?.setAttribute(attribute, value)
   }
@@ -52,7 +90,9 @@ function applyRouteMetadata(routePath: string, route: Route) {
   setMeta('meta[property="og:url"]', 'content', canonicalUrl)
   setMeta('meta[name="twitter:title"]', 'content', route.title)
   setMeta('meta[name="twitter:description"]', 'content', route.description)
-
+  setAlternateLink('en', `${baseUrl}${englishPath}`)
+  setAlternateLink('es', `${baseUrl}${spanishPath}`)
+  setAlternateLink('x-default', `${baseUrl}${englishPath}`)
 }
 
 function applyRouteSchema(routePath: string, route: Route) {
@@ -62,15 +102,21 @@ function applyRouteSchema(routePath: string, route: Route) {
     name: item.querySelector('h3')?.textContent?.trim() ?? '',
     acceptedAnswer: { '@type': 'Answer', text: item.querySelector('p')?.textContent?.trim() ?? '' },
   })).filter((question) => question.name && question.acceptedAnswer.text)
+  const locale = route.locale ?? 'en'
+  const language = locale === 'es' ? 'es' : 'en'
+  const rootPath = locale === 'es' ? '/es' : '/'
+  const comparisonPath = locale === 'es'
+    ? '/es/codepen-vs-jsfiddle-vs-myztic-playground'
+    : '/codepen-vs-jsfiddle-vs-myztic-playground'
   const graph: Record<string, unknown>[] = [{
     '@type': route.schemaType ?? 'WebPage', name: route.title, url: canonicalUrl,
-    description: route.description, dateModified: '2026-07-22',
+    description: route.description, dateModified: '2026-07-23', inLanguage: language,
     isPartOf: { '@type': 'WebSite', name: 'Myztic Playground', url: `${baseUrl}/` },
   }]
   if (routePath.includes('/alternatives/') || routePath.includes('-vs-')) graph.push({
     '@type': 'BreadcrumbList', itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Myztic Playground', item: `${baseUrl}/` },
-      { '@type': 'ListItem', position: 2, name: 'Comparisons', item: `${baseUrl}/codepen-vs-jsfiddle-vs-myztic-playground` },
+      { '@type': 'ListItem', position: 1, name: 'Myztic Playground', item: `${baseUrl}${rootPath}` },
+      { '@type': 'ListItem', position: 2, name: locale === 'es' ? 'Comparativas' : 'Comparisons', item: `${baseUrl}${comparisonPath}` },
       { '@type': 'ListItem', position: 3, name: route.title, item: canonicalUrl },
     ],
   })

@@ -1,7 +1,10 @@
 import type { ReactNode } from 'react'
 import { exampleProjects, type ExampleSlug } from './examples'
+import spanishContent from './spanish-content.json'
 
-const supportLinks = [
+export type Locale = 'en' | 'es'
+
+const englishSupportLinks = [
   ['/codepen-vs-jsfiddle-vs-myztic-playground', 'Choose a playground'],
   ['/export-html-css-js-zip', 'ZIP export'],
   ['/for-teachers', 'For teachers'],
@@ -12,16 +15,57 @@ const supportLinks = [
   ['/alternatives/jsfiddle', 'JSFiddle alternative'],
 ] as const
 
-function Header() {
-  return <header className="site-header"><nav className="site-nav" aria-label="Primary navigation"><a className="site-brand" href="/"><span className="site-brand-mark" aria-hidden="true">✦</span><span>Myztic <strong>Playground</strong></span></a><div className="site-links"><a href="/examples">Examples</a><a href="/for-teachers">For teachers</a><a href="/codepen-vs-jsfiddle-vs-myztic-playground">Compare</a><a className="nav-cta" href="/app">Open playground <span aria-hidden="true">→</span></a></div></nav></header>
+const spanishSupportLinks = [
+  ['/es/codepen-vs-jsfiddle-vs-myztic-playground', 'Elegir un editor'],
+  ['/es/export-html-css-js-zip', 'Exportación ZIP'],
+  ['/es/for-teachers', 'Para docentes'],
+  ['/es/html-css-js-playground-for-beginners', 'Para principiantes'],
+  ['/es/local-save-code-playground', 'Guardado local'],
+  ['/es/safe-javascript-playground', 'Seguridad de JavaScript'],
+  ['/es/alternatives/codepen', 'Alternativa a CodePen'],
+  ['/es/alternatives/jsfiddle', 'Alternativa a JSFiddle'],
+] as const
+
+export function localizedPath(pathname: string, locale: Locale) {
+  const normalized = pathname.replace(/\/$/, '') || '/'
+  if (locale === 'es') return normalized === '/' ? '/es' : `/es${normalized}`
+  if (normalized === '/es') return '/'
+  return normalized.startsWith('/es/') ? normalized.slice(3) : normalized
 }
 
-function Footer() {
-  return <footer className="site-footer"><div className="section-wrap footer-inner"><div><a className="site-brand" href="/"><span className="site-brand-mark">✦</span><span>Myztic <strong>Playground</strong></span></a><p>A free, local-first place to build for the open web.</p></div><nav aria-label="Footer navigation"><a href="/app">Playground</a><a href="/examples">Examples</a><a href="/codepen-vs-jsfiddle-vs-myztic-playground">Compare</a><a href="/for-teachers">Teachers</a><a href="/privacy">Privacy</a><a href="/safe-javascript-playground">Safety</a><a href="/changelog">Changelog</a><a href="https://github.com/myzticdev/myztic-playground">GitHub ↗</a></nav></div><div className="section-wrap footer-bottom"><span>© 2026 Myzticdev</span><span>Free. No signup. Built for the open web.</span></div></footer>
+function equivalentLanguagePath(locale: Locale) {
+  const targetLocale = locale === 'es' ? 'en' : 'es'
+  return `${localizedPath(window.location.pathname, targetLocale)}${window.location.search}`
 }
 
-function PageShell({ children }: { children: ReactNode }) {
-  return <div className="site-shell"><Header /><main>{children}</main><Footer /></div>
+export function LanguageSwitcher({ locale, compact = false }: { locale: Locale; compact?: boolean }) {
+  const englishHref = locale === 'en'
+    ? `${window.location.pathname}${window.location.search}`
+    : equivalentLanguagePath(locale)
+  const spanishHref = locale === 'es'
+    ? `${window.location.pathname}${window.location.search}`
+    : equivalentLanguagePath(locale)
+  return <nav className={`language-switcher${compact ? ' language-switcher-compact' : ''}`} aria-label={locale === 'es' ? 'Idioma' : 'Language'}>
+    <a href={englishHref} lang="en" hrefLang="en" aria-current={locale === 'en' ? 'page' : undefined}>EN</a>
+    <span aria-hidden="true">/</span>
+    <a href={spanishHref} lang="es" hrefLang="es" aria-current={locale === 'es' ? 'page' : undefined}>ES</a>
+  </nav>
+}
+
+function Header({ locale = 'en' }: { locale?: Locale }) {
+  const isSpanish = locale === 'es'
+  const prefix = isSpanish ? '/es' : ''
+  return <header className="site-header"><nav className="site-nav" aria-label={isSpanish ? 'Navegación principal' : 'Primary navigation'}><a className="site-brand" href={isSpanish ? '/es' : '/'}><span className="site-brand-mark" aria-hidden="true">✦</span><span>Myztic <strong>Playground</strong></span></a><div className="site-links"><a href={`${prefix}/examples`}>{isSpanish ? 'Ejemplos' : 'Examples'}</a><a href={`${prefix}/for-teachers`}>{isSpanish ? 'Para docentes' : 'For teachers'}</a><a href={`${prefix}/codepen-vs-jsfiddle-vs-myztic-playground`}>{isSpanish ? 'Comparar' : 'Compare'}</a><LanguageSwitcher locale={locale} compact /><a className="nav-cta" href={`${prefix}/app`}>{isSpanish ? 'Abrir editor' : 'Open playground'} <span aria-hidden="true">→</span></a></div></nav></header>
+}
+
+function Footer({ locale = 'en' }: { locale?: Locale }) {
+  const isSpanish = locale === 'es'
+  const prefix = isSpanish ? '/es' : ''
+  return <footer className="site-footer"><div className="section-wrap footer-inner"><div><a className="site-brand" href={isSpanish ? '/es' : '/'}><span className="site-brand-mark">✦</span><span>Myztic <strong>Playground</strong></span></a><p>{isSpanish ? 'Un espacio gratuito y local para crear en la web abierta.' : 'A free, local-first place to build for the open web.'}</p></div><nav aria-label={isSpanish ? 'Navegación del pie' : 'Footer navigation'}><a href={`${prefix}/app`}>{isSpanish ? 'Editor' : 'Playground'}</a><a href={`${prefix}/examples`}>{isSpanish ? 'Ejemplos' : 'Examples'}</a><a href={`${prefix}/codepen-vs-jsfiddle-vs-myztic-playground`}>{isSpanish ? 'Comparar' : 'Compare'}</a><a href={`${prefix}/for-teachers`}>{isSpanish ? 'Docentes' : 'Teachers'}</a><a href={`${prefix}/privacy`}>{isSpanish ? 'Privacidad' : 'Privacy'}</a><a href={`${prefix}/safe-javascript-playground`}>{isSpanish ? 'Seguridad' : 'Safety'}</a><a href={`${prefix}/changelog`}>{isSpanish ? 'Cambios' : 'Changelog'}</a><a href="https://github.com/myzticdev/myztic-playground">GitHub ↗</a></nav></div><div className="section-wrap footer-bottom"><span>© 2026 Myzticdev</span><span>{isSpanish ? 'Gratis. Sin registro. Creado para la web abierta.' : 'Free. No signup. Built for the open web.'}</span></div></footer>
+}
+
+function PageShell({ children, locale = 'en' }: { children: ReactNode; locale?: Locale }) {
+  return <div className="site-shell"><Header locale={locale} /><main>{children}</main><Footer locale={locale} /></div>
 }
 
 const exampleClassNames: Record<ExampleSlug, string> = {
@@ -42,12 +86,44 @@ export function ExamplesPage() {
   return <PageShell><section className="page-hero section-wrap"><p className="eyebrow"><span></span> Example projects</p><h1>Start with something small.<br /><em>Make it your own.</em></h1><p>Open a compact frontend idea, inspect how it works, then remix it in Myztic Playground.</p></section><section className="examples-page section-wrap"><div className="example-grid full-grid">{exampleProjects.map((example) => <article className={`example-card ${exampleClassNames[example.slug]}`} key={example.slug}><div className="example-art"><ExampleArtwork slug={example.slug} /></div><div><p><b>{example.category}</b> • {example.lines} lines</p><h2>{example.title}</h2><p className="example-description">{example.description}</p><a href={`/app?example=${example.slug}`}>Open code in playground <span>→</span></a></div></article>)}</div></section><section className="final-cta section-wrap"><div><p className="eyebrow"><span></span> Begin from zero</p><h2>Prefer a blank canvas?</h2><p>The playground is ready whenever you are.</p></div><a className="primary-cta" href="/app">Open blank playground <span>→</span></a></section></PageShell>
 }
 
+const spanishExampleText: Record<ExampleSlug, { category: string; title: string; description: string }> = {
+  'gradient-card': { category: 'CSS creativo', title: 'Tarjeta con degradado', description: 'Capas, degradados y una animación sutil con CSS.' },
+  counter: { category: 'JavaScript', title: 'Contador de clics', description: 'Eventos, estado y actualización del DOM en pocas líneas.' },
+  'profile-card': { category: 'HTML y CSS', title: 'Tarjeta de perfil', description: 'Una composición adaptable con jerarquía visual clara.' },
+  'orbit-loader': { category: 'Animación CSS', title: 'Indicador orbital', description: 'Movimiento circular creado sin bibliotecas externas.' },
+  'signup-form': { category: 'Formularios', title: 'Formulario de registro', description: 'Campos accesibles y estados visuales para una llamada a la acción.' },
+  'theme-switcher': { category: 'DOM y CSS', title: 'Selector de tema', description: 'Cambia entre modo claro y oscuro con variables CSS.' },
+}
+
+export function SpanishExamplesPage() {
+  return <PageShell locale="es"><section className="page-hero section-wrap"><p className="eyebrow"><span></span> Proyectos de ejemplo</p><h1>Empieza con algo pequeño.<br /><em>Hazlo tuyo.</em></h1><p>Abre una idea frontend, revisa cómo funciona y modifícala en Myztic Playground.</p></section><section className="examples-page section-wrap"><div className="example-grid full-grid">{exampleProjects.map((example) => {
+    const translated = spanishExampleText[example.slug]
+    return <article className={`example-card ${exampleClassNames[example.slug]}`} key={example.slug}><div className="example-art"><ExampleArtwork slug={example.slug} /></div><div><p><b>{translated.category}</b> • {example.lines} líneas</p><h2>{translated.title}</h2><p className="example-description">{translated.description}</p><a href={`/es/app?example=${example.slug}`}>Abrir código en el editor <span>→</span></a></div></article>
+  })}</div></section><section className="final-cta section-wrap"><div><p className="eyebrow"><span></span> Empieza desde cero</p><h2>¿Prefieres un lienzo vacío?</h2><p>El editor está listo cuando tú lo estés.</p></div><a className="primary-cta" href="/es/app">Abrir editor vacío <span>→</span></a></section></PageShell>
+}
+
 type TableRow = { label: string; value: ReactNode }
 type Faq = { question: string; answer: ReactNode }
 type DetailSection = { heading: string; paragraphs?: ReactNode[]; items?: string[] }
 type DecisionRow = { need: string; fit: string; reason: string }
 
+export type SpanishPageData = {
+  title: string
+  description: string
+  eyebrow: string
+  heading: string
+  summary: string
+  answer: string
+  rows: [string, string][]
+  sections: [string, string][]
+  faqs: [string, string][]
+  schemaType: 'Article' | 'TechArticle' | 'WebPage' | 'WebApplication'
+}
+
+export const spanishPages = spanishContent as unknown as Record<string, SpanishPageData>
+
 type GuidePageProps = {
+  locale?: Locale
   eyebrow: string
   title: ReactNode
   summary: string
@@ -63,20 +139,38 @@ type GuidePageProps = {
   updated?: string
 }
 
-function GuidePage({ eyebrow, title, summary, heading, paragraphs, rows, listTitle, items, detailSections, decisionTitle, decisionRows, faqs, updated = 'July 22, 2026' }: GuidePageProps) {
-  return <PageShell>
-    <section className="page-hero guide-hero section-wrap"><p className="eyebrow"><span></span> {eyebrow}</p><h1>{title}</h1><p>{summary}</p><p className="updated">Last updated {updated}</p></section>
+function GuidePage({ locale = 'en', eyebrow, title, summary, heading, paragraphs, rows, listTitle, items, detailSections, decisionTitle, decisionRows, faqs, updated }: GuidePageProps) {
+  const isSpanish = locale === 'es'
+  const supportLinks = isSpanish ? spanishSupportLinks : englishSupportLinks
+  const displayDate = updated ?? (isSpanish ? '23 de julio de 2026' : 'July 23, 2026')
+  return <PageShell locale={locale}>
+    <section className="page-hero guide-hero section-wrap"><p className="eyebrow"><span></span> {eyebrow}</p><h1>{title}</h1><p>{summary}</p><p className="updated">{isSpanish ? 'Última actualización' : 'Last updated'} {displayDate}</p></section>
     <article className="guide-content section-wrap">
-      <section className="answer-block"><h2>Quick answer</h2><h3>{heading}</h3>{paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}</section>
-      {rows && <section><h2>At a glance</h2><div className="feature-table" role="table" aria-label="Feature summary">{rows.map((row) => <div className="feature-row" role="row" key={row.label}><strong role="rowheader">{row.label}</strong><span role="cell">{row.value}</span></div>)}</div></section>}
-      {decisionRows && <section><h2>{decisionTitle}</h2><div className="decision-table" role="table" aria-label={decisionTitle}><div className="decision-row decision-head" role="row"><strong role="columnheader">Need</strong><strong role="columnheader">Best fit</strong><strong role="columnheader">Why</strong></div>{decisionRows.map((row) => <div className="decision-row" role="row" key={row.need}><strong role="rowheader">{row.need}</strong><span role="cell">{row.fit}</span><span role="cell">{row.reason}</span></div>)}</div></section>}
+      <section className="answer-block"><h2>{isSpanish ? 'Respuesta rápida' : 'Quick answer'}</h2><h3>{heading}</h3>{paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}</section>
+      {rows && <section><h2>{isSpanish ? 'Resumen' : 'At a glance'}</h2><div className="feature-table" role="table" aria-label={isSpanish ? 'Resumen de características' : 'Feature summary'}>{rows.map((row) => <div className="feature-row" role="row" key={row.label}><strong role="rowheader">{row.label}</strong><span role="cell">{row.value}</span></div>)}</div></section>}
+      {decisionRows && <section><h2>{decisionTitle}</h2><div className="decision-table" role="table" aria-label={decisionTitle}><div className="decision-row decision-head" role="row"><strong role="columnheader">{isSpanish ? 'Necesidad' : 'Need'}</strong><strong role="columnheader">{isSpanish ? 'Mejor opción' : 'Best fit'}</strong><strong role="columnheader">{isSpanish ? 'Motivo' : 'Why'}</strong></div>{decisionRows.map((row) => <div className="decision-row" role="row" key={row.need}><strong role="rowheader">{row.need}</strong><span role="cell">{row.fit}</span><span role="cell">{row.reason}</span></div>)}</div></section>}
       {items && <section><h2>{listTitle}</h2><ul className="guide-list">{items.map((item) => <li key={item}>{item}</li>)}</ul></section>}
       {detailSections?.map((section) => <section key={section.heading}><h2>{section.heading}</h2>{section.paragraphs?.map((paragraph, index) => <p className="guide-paragraph" key={index}>{paragraph}</p>)}{section.items && <ul className="guide-list">{section.items.map((item) => <li key={item}>{item}</li>)}</ul>}</section>)}
-      <section><h2>Frequently asked questions</h2><div className="guide-faq">{faqs.map((faq) => <article key={faq.question}><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}</div></section>
-      <aside className="related-links"><h2>Keep exploring</h2><div>{supportLinks.map(([href, label]) => <a href={href} key={href}>{label} <span>→</span></a>)}</div></aside>
+      <section><h2>{isSpanish ? 'Preguntas frecuentes' : 'Frequently asked questions'}</h2><div className="guide-faq">{faqs.map((faq) => <article key={faq.question}><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}</div></section>
+      <aside className="related-links"><h2>{isSpanish ? 'Seguir explorando' : 'Keep exploring'}</h2><div>{supportLinks.map(([href, label]) => <a href={href} key={href}>{label} <span>→</span></a>)}</div></aside>
     </article>
-    <section className="final-cta section-wrap"><div><p className="eyebrow"><span></span> Start immediately</p><h2>Turn an idea into a working page.</h2><p>No setup, account, or payment details required.</p></div><a className="primary-cta" href="/app">Open playground <span>→</span></a></section>
+    <section className="final-cta section-wrap"><div><p className="eyebrow"><span></span> {isSpanish ? 'Empieza ahora' : 'Start immediately'}</p><h2>{isSpanish ? 'Convierte una idea en una página que funciona.' : 'Turn an idea into a working page.'}</h2><p>{isSpanish ? 'Sin configuración, cuenta ni datos de pago.' : 'No setup, account, or payment details required.'}</p></div><a className="primary-cta" href={isSpanish ? '/es/app' : '/app'}>{isSpanish ? 'Abrir editor' : 'Open playground'} <span>→</span></a></section>
   </PageShell>
+}
+
+export function SpanishGuidePage({ routePath }: { routePath: string }) {
+  const page = spanishPages[routePath]
+  return <GuidePage
+    locale="es"
+    eyebrow={page.eyebrow}
+    title={page.heading}
+    summary={page.summary}
+    heading={page.heading}
+    paragraphs={[page.answer]}
+    rows={page.rows.map(([label, value]) => ({ label, value }))}
+    detailSections={page.sections.map(([heading, paragraph]) => ({ heading, paragraphs: [paragraph] }))}
+    faqs={page.faqs.map(([question, answer]) => ({ question, answer }))}
+  />
 }
 
 const coreRows: TableRow[] = [

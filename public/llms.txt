@@ -4,6 +4,12 @@
 
 Myztic Playground runs browser-native HTML, CSS, and JavaScript only. It does not provide backend execution, npm packages, cloud project sync, public profiles, or collaboration. The latest project is stored in the current browser profile; ZIP export is the recommended portable backup.
 
+## Languages
+
+- [English](https://playground.myztic.dev/): Default English site.
+- [Español](https://playground.myztic.dev/es): Complete Spanish edition.
+- [llms.txt en español](https://playground.myztic.dev/es/llms.txt): Spanish-language product and page guide.
+
 ## Primary pages
 
 - [Open the playground](https://playground.myztic.dev/app): Write and run browser-native HTML, CSS, and JavaScript.
