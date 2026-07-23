@@ -2,6 +2,8 @@
 
 > Myztic Playground is a free, no-signup HTML, CSS, and JavaScript playground with live preview, local browser save, and ZIP export. It is built for beginners, teachers, prototypers, and developers who need a fast frontend testing space without accounts or setup.
 
+Myztic Playground runs browser-native HTML, CSS, and JavaScript only. It does not provide backend execution, npm packages, cloud project sync, public profiles, or collaboration. The latest project is stored in the current browser profile; ZIP export is the recommended portable backup.
+
 ## Primary pages
 
 - [Open the playground](https://playground.myztic.dev/app): Write and run browser-native HTML, CSS, and JavaScript.
@@ -23,17 +25,14 @@
 - [CodePen vs JSFiddle vs Myztic Playground](https://playground.myztic.dev/codepen-vs-jsfiddle-vs-myztic-playground): A balanced chooser table.
 - [Best free no-signup playground](https://playground.myztic.dev/best-free-html-css-js-playground-no-signup): A decision checklist.
 
-## Product facts
+## Policies and updates
 
-- Price: Free.
-- Account required: No.
-- Languages: HTML, CSS, and browser JavaScript.
-- Preview: Live, in a restricted opaque-origin iframe.
-- Storage: Latest project saved in the current browser profile.
-- Export: ZIP containing index.html, styles.css, and script.js.
-- External network access from preview: Blocked.
-- Backend or framework compiler: No.
+- [Privacy](https://playground.myztic.dev/privacy): Local storage, analytics, project-source, and ZIP handling.
+- [JavaScript sandbox and limits](https://playground.myztic.dev/safe-javascript-playground): Preview isolation, blocked capabilities, and safety limitations.
+- [Changelog](https://playground.myztic.dev/changelog): Current user-facing features and content updates.
+- [Sitemap](https://playground.myztic.dev/sitemap.xml): Complete crawlable URL inventory.
 
-## Maintainer
+## Project
 
-Myztic Playground is maintained by [Myzticdev](https://myztic.dev) and its source is available on [GitHub](https://github.com/myzticdev/myztic-playground).
+- [About Myztic Playground](https://playground.myztic.dev/about): Product purpose, intended scope, and maintainer.
+- [Source code](https://github.com/myzticdev/myztic-playground): Public repository maintained by Myzticdev.

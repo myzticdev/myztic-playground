@@ -97,6 +97,48 @@ and ZIP exports contain no playground analytics configuration.
 
 Dokploy can also deploy the included Compose file. In that case, point the domain at the `myztic-playground` service on port `80`; the host-side `8080` mapping is mainly for local use.
 
+## IndexNow and AI discovery
+
+The production build publishes:
+
+- `/9f7d9b5a34954b3f95263711726516fd.txt` — the root IndexNow ownership key.
+- `/sitemap.xml` — the complete crawlable URL inventory.
+- `/llms.txt` — a concise Markdown map of the product, primary pages, comparisons, policies, and project links.
+
+After deploying the key file and updated pages, notify IndexNow about selected
+changed URLs:
+
+```bash
+npm run indexnow:submit -- /changed-page /another-changed-page
+```
+
+For the initial rollout or a genuine site-wide update, submit the complete
+sitemap:
+
+```bash
+npm run indexnow:submit -- --sitemap
+```
+
+The command verifies that the public key URL returns the expected key before it
+sends a bulk POST to `https://api.indexnow.org/indexnow`. HTTP `200` and the
+first-use `202` response are accepted. Use the dry run to inspect the payload
+without network access:
+
+```bash
+npm run indexnow:dry-run
+```
+
+The **Submit URLs to IndexNow** GitHub Actions workflow runs automatically after
+every push to `main`. It waits five minutes for Dokploy, verifies the deployed
+key, submits the sitemap, and retries twice at one-minute intervals if the site
+or IndexNow endpoint is temporarily unavailable. The workflow can also be run
+manually: leave its URL input blank for the sitemap, or provide space-separated
+changed paths.
+
+This small static site submits its 20-URL sitemap after a production merge.
+Manual runs should normally include only URLs that were added, updated,
+redirected, or deleted; the sitemap remains the complete long-term inventory.
+
 ## Security limitations
 
 - Infinite loops or resource-heavy code can still freeze or crash the visitor's own browser tab. Because browser JavaScript can monopolize the page's main thread, the Stop button may not respond after such a loop starts.
@@ -110,6 +152,8 @@ Dokploy can also deploy the included Compose file. In that case, point the domai
 
 - `npm run dev` — start the Vite development server
 - `npm run build` — type-check and create the production build
+- `npm run indexnow:submit` — verify the deployed key and notify IndexNow
+- `npm run indexnow:dry-run` — print the sitemap submission payload without sending it
 - `npm run preview` — serve the production build locally
 - `npm run test:e2e:install` — install the Chromium test browser once
 - `npm run test:e2e` — run browser sandbox regression tests
