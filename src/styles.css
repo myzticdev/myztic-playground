@@ -34,6 +34,12 @@ button { color: inherit; }
 .brand strong { color: #fff; font-weight: 650; }
 .brand-mark { width: 32px; height: 32px; display: grid; place-items: center; border: 1px solid #7659ac; border-radius: 9px; color: #d2baff; background: radial-gradient(circle at 40% 32%, #473267, #1b1527 72%); font-size: 17px; line-height: 1; box-shadow: 0 0 24px #8b60d03d; }
 .actions { display: flex; align-items: center; gap: 8px; }
+.language-switcher { display: inline-flex; align-items: center; gap: 5px; color: #686271; font: 750 10px/1 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .06em; }
+.language-switcher a { padding: 7px 5px; border-radius: 6px; color: #817a89; text-decoration: none; }
+.language-switcher a:hover { color: #fff; }
+.language-switcher a[aria-current="page"] { color: #e5d6f6; background: #21172d; }
+.language-switcher-compact { flex: 0 0 auto; }
+.actions .language-switcher { margin-right: 3px; }
 
 .button { width: 38px; min-width: 38px; min-height: 38px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border: 1px solid transparent; border-radius: 8px; background: transparent; color: inherit; text-decoration: none; font-size: 13px; font-weight: 650; cursor: pointer; transition: border-color .16s, background .16s, transform .16s; }
 .button:hover:not(:disabled) { transform: translateY(-1px); }
@@ -120,6 +126,7 @@ button { color: inherit; }
 .site-links > a:hover { color: #fff; }
 .site-links .nav-cta { padding: 10px 15px; border: 1px solid #493960; border-radius: 8px; color: #e8ddf8; background: #1b1426; }
 .site-links .nav-cta:hover { border-color: #7456a0; background: #241933; }
+.site-links .language-switcher { margin-inline: -9px; }
 
 .hero { position: relative; min-height: 740px; padding-block: 112px 95px; display: grid; grid-template-columns: .82fr 1.18fr; align-items: center; gap: 74px; }
 .hero::before { content: ''; position: absolute; width: 680px; height: 680px; left: -430px; top: -150px; border-radius: 50%; background: #7f55bd1e; filter: blur(18px); pointer-events: none; }

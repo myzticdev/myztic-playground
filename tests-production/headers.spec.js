@@ -53,3 +53,11 @@ test('health check is minimal and does not expose an nginx version', async ({ re
   expect(await response.text()).toBe('ok\n')
   expect(response.headers().server ?? '').not.toMatch(/nginx\/\d/i)
 })
+
+test('prerendered app route does not redirect away from the mapped port', async ({ request }) => {
+  const response = await request.get('/app', { maxRedirects: 0 })
+
+  expect(response.status()).toBe(200)
+  expect(response.url()).toBe('http://127.0.0.1:8080/app')
+  expect(await response.text()).toContain('<title>HTML, CSS &amp; JavaScript Editor')
+})

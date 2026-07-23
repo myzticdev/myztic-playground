@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { strToU8, zipSync } from 'fflate'
 import { trackAnalyticsEvent } from './analytics'
 import { getExampleProject } from './examples'
+import { LanguageSwitcher, type Locale } from './MarketingPages'
 
 type Language = 'html' | 'css' | 'javascript'
 
@@ -58,13 +59,31 @@ button.addEventListener('click', () => {
 });`,
 }
 
-function loadSavedCode(): PlaygroundCode {
+const spanishStarterCode: PlaygroundCode = {
+  ...starterCode,
+  html: `<main class="card">
+  <span class="eyebrow">MYZTIC PLAYGROUND</span>
+  <h1>Crea algo <em>maravilloso.</em></h1>
+  <p>Edita el código y pulsa Ejecutar para darle vida.</p>
+  <button id="spark">Añadir magia</button>
+</main>`,
+  javascript: `const button = document.querySelector('#spark');
+
+button.addEventListener('click', () => {
+  const colors = ['#b99cff', '#ff9ed2', '#8ee6d0', '#ffd479'];
+  const color = colors[Math.floor(Math.random() * colors.length)];
+  document.querySelector('em').style.color = color;
+  button.textContent = 'Magia añadida ✦';
+});`,
+}
+
+function loadSavedCode(defaultCode: PlaygroundCode): PlaygroundCode {
   const example = getExampleProject(new URLSearchParams(window.location.search).get('example'))
   if (example) return example.code
 
   try {
     const saved = localStorage.getItem(STORAGE_KEY)
-    if (!saved) return starterCode
+    if (!saved) return defaultCode
     const parsed = JSON.parse(saved) as Partial<PlaygroundCode>
     if (typeof parsed.html === 'string' && typeof parsed.css === 'string' && typeof parsed.javascript === 'string') {
       return parsed as PlaygroundCode
@@ -72,10 +91,10 @@ function loadSavedCode(): PlaygroundCode {
   } catch {
     // Invalid or unavailable browser storage should never prevent the app loading.
   }
-  return starterCode
+  return defaultCode
 }
 
-function createDownloadHtml(html: string) {
+function createDownloadHtml(html: string, locale: Locale) {
   const stylesheet = '<link rel="stylesheet" href="styles.css">'
   const script = '<script src="script.js" defer></script>'
 
@@ -91,11 +110,11 @@ function createDownloadHtml(html: string) {
   }
 
   return `<!doctype html>
-<html lang="en">
+<html lang="${locale}">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Myztic Playground Project</title>
+    <title>${locale === 'es' ? 'Proyecto de Myztic Playground' : 'Myztic Playground Project'}</title>
     ${stylesheet}
   </head>
   <body>
@@ -111,12 +130,31 @@ const languageLabels: Record<Language, string> = {
   javascript: 'JavaScript',
 }
 
-export default function App() {
-  const [code, setCode] = useState<PlaygroundCode>(loadSavedCode)
+const uiText = {
+  en: {
+    home: 'Myztic Playground home', github: 'Open GitHub repository', githubSoon: 'GitHub repository coming soon',
+    download: 'Download ZIP', reset: 'Reset code', stop: 'Stop', stopTitle: 'Stop preview', run: 'Run', runTitle: 'Run preview',
+    editor: 'Code editor', editorLanguage: 'Editor language', lines: 'lines', code: 'code', saved: 'Saved locally',
+    shortcut: 'Ctrl / ⌘ + Enter to run', livePreview: 'Live preview', preview: 'Preview', running: 'Running', stopped: 'Stopped',
+    frame: 'User code preview',
+  },
+  es: {
+    home: 'Inicio de Myztic Playground', github: 'Abrir repositorio de GitHub', githubSoon: 'Repositorio de GitHub próximamente',
+    download: 'Descargar ZIP', reset: 'Restablecer código', stop: 'Detener', stopTitle: 'Detener vista previa', run: 'Ejecutar', runTitle: 'Ejecutar vista previa',
+    editor: 'Editor de código', editorLanguage: 'Lenguaje del editor', lines: 'líneas', code: 'código', saved: 'Guardado localmente',
+    shortcut: 'Ctrl / ⌘ + Enter para ejecutar', livePreview: 'Vista previa', preview: 'Vista previa', running: 'En ejecución', stopped: 'Detenido',
+    frame: 'Vista previa del código',
+  },
+} as const
+
+export default function App({ locale = 'en' }: { locale?: Locale }) {
+  const initialCode = locale === 'es' ? spanishStarterCode : starterCode
+  const text = uiText[locale]
+  const [code, setCode] = useState<PlaygroundCode>(() => loadSavedCode(initialCode))
   const [activeLanguage, setActiveLanguage] = useState<Language>('html')
   // Restore and run the locally saved preview immediately for a seamless return
   // experience. Execution remains inside the opaque-origin sandbox.
-  const [previewCode, setPreviewCode] = useState<PlaygroundCode | null>(loadSavedCode)
+  const [previewCode, setPreviewCode] = useState<PlaygroundCode | null>(() => loadSavedCode(initialCode))
   const [isRunning, setIsRunning] = useState(true)
   const [runCount, setRunCount] = useState(0)
 
@@ -149,8 +187,8 @@ export default function App() {
   }
 
   const resetCode = () => {
-    setCode(starterCode)
-    setPreviewCode(starterCode)
+    setCode(initialCode)
+    setPreviewCode(initialCode)
     setIsRunning(true)
     setRunCount((count) => count + 1)
     trackAnalyticsEvent('reset_code')
@@ -158,7 +196,7 @@ export default function App() {
 
   const downloadZip = () => {
     const archive = zipSync({
-      'index.html': strToU8(createDownloadHtml(code.html)),
+      'index.html': strToU8(createDownloadHtml(code.html, locale)),
       'styles.css': strToU8(code.css),
       'script.js': strToU8(code.javascript),
     }, { level: 6 })
@@ -175,11 +213,12 @@ export default function App() {
   return (
     <div className="app-shell">
       <header className="topbar">
-        <a className="brand" href="/" aria-label="Myztic Playground home">
+        <a className="brand" href={locale === 'es' ? '/es' : '/'} aria-label={text.home}>
           <span className="brand-mark" aria-hidden="true">✦</span>
           <span>Myztic <strong>Playground</strong></span>
         </a>
         <div className="actions">
+          <LanguageSwitcher locale={locale} compact />
           {GITHUB_REPOSITORY_URL ? (
             <a
               className="button button-github"
@@ -187,34 +226,34 @@ export default function App() {
               target="_blank"
               rel="noreferrer"
               onClick={() => trackAnalyticsEvent('open_github')}
-              aria-label="Open GitHub repository"
-              title="Open GitHub repository"
+              aria-label={text.github}
+              title={text.github}
             >
               <GitHubIcon />
             </a>
           ) : (
-            <button className="button button-github" type="button" disabled aria-label="GitHub repository coming soon" title="GitHub repository coming soon">
+            <button className="button button-github" type="button" disabled aria-label={text.githubSoon} title={text.githubSoon}>
               <GitHubIcon />
             </button>
           )}
-          <button className="button button-download" type="button" onClick={downloadZip} aria-label="Download ZIP" title="Download ZIP">
+          <button className="button button-download" type="button" onClick={downloadZip} aria-label={text.download} title={text.download}>
             <span className="download-icon" aria-hidden="true">↓</span>
           </button>
-          <button className="button button-ghost" type="button" onClick={resetCode} aria-label="Reset code" title="Reset code">
+          <button className="button button-ghost" type="button" onClick={resetCode} aria-label={text.reset} title={text.reset}>
             <span className="reset-icon" aria-hidden="true">↻</span>
           </button>
-          <button className="button button-stop" type="button" onClick={stop} disabled={!isRunning} aria-label="Stop" title="Stop preview">
+          <button className="button button-stop" type="button" onClick={stop} disabled={!isRunning} aria-label={text.stop} title={text.stopTitle}>
             <span className="stop-icon" aria-hidden="true" />
           </button>
-          <button className="button button-run" type="button" onClick={run} aria-label="Run" title="Run preview">
+          <button className="button button-run" type="button" onClick={run} aria-label={text.run} title={text.runTitle}>
             <span className="play-icon" aria-hidden="true" />
           </button>
         </div>
       </header>
 
       <main className="workspace">
-        <section className="panel editor-panel" aria-label="Code editor">
-          <div className="tabs" role="tablist" aria-label="Editor language">
+        <section className="panel editor-panel" aria-label={text.editor}>
+          <div className="tabs" role="tablist" aria-label={text.editorLanguage}>
             {(Object.keys(languageLabels) as Language[]).map((language) => (
               <button
                 key={language}
@@ -232,7 +271,7 @@ export default function App() {
           <div className="editor-wrap">
             <div className="editor-meta">
               <span>{languageLabels[activeLanguage]}</span>
-              <span>{lineCount} lines</span>
+              <span>{lineCount} {text.lines}</span>
             </div>
             <textarea
               className="code-editor"
@@ -253,20 +292,20 @@ export default function App() {
                 }
               }}
               spellCheck={false}
-              aria-label={`${languageLabels[activeLanguage]} code`}
+              aria-label={`${languageLabels[activeLanguage]} ${text.code}`}
             />
           </div>
           <footer className="panel-footer">
-            <span><i className="status-dot" /> Saved locally</span>
-            <span>Ctrl / ⌘ + Enter to run</span>
+            <span><i className="status-dot" /> {text.saved}</span>
+            <span>{text.shortcut}</span>
           </footer>
         </section>
 
-        <section className="panel preview-panel" aria-label="Live preview">
+        <section className="panel preview-panel" aria-label={text.livePreview}>
           <div className="preview-header">
             <div>
-              <span className="preview-title">Preview</span>
-              <span className={`run-status ${isRunning ? 'running' : ''}`}>{isRunning ? 'Running' : 'Stopped'}</span>
+              <span className="preview-title">{text.preview}</span>
+              <span className={`run-status ${isRunning ? 'running' : ''}`}>{isRunning ? text.running : text.stopped}</span>
             </div>
           </div>
           <div className="preview-frame-wrap">
@@ -282,7 +321,7 @@ export default function App() {
             <iframe
               key={runCount}
               className="preview-frame"
-              title="User code preview"
+              title={text.frame}
               sandbox="allow-scripts"
               src="/preview.html"
               referrerPolicy="no-referrer"
