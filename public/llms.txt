@@ -11,11 +11,17 @@
 - [ZIP export](https://playground.myztic.dev/export-html-css-js-zip): Download index.html, styles.css, and script.js.
 - [Sandbox security](https://playground.myztic.dev/safe-javascript-playground): Preview isolation and limitations.
 - [Privacy](https://playground.myztic.dev/privacy): Local saving and data handling.
+- [Local save](https://playground.myztic.dev/local-save-code-playground): How browser storage works and when to export a backup.
+- [Beginner playground](https://playground.myztic.dev/html-css-js-playground-for-beginners): A four-step browser-native learning path.
+- [Live JavaScript preview](https://playground.myztic.dev/online-javascript-playground-live-preview): DOM and client-side JavaScript testing.
+- [Browser-based frontend playground](https://playground.myztic.dev/browser-based-frontend-playground): No-install frontend prototyping and its limits.
 
 ## Comparisons
 
 - [Myztic Playground vs CodePen](https://playground.myztic.dev/alternatives/codepen)
 - [Myztic Playground vs JSFiddle](https://playground.myztic.dev/alternatives/jsfiddle)
+- [CodePen vs JSFiddle vs Myztic Playground](https://playground.myztic.dev/codepen-vs-jsfiddle-vs-myztic-playground): A balanced chooser table.
+- [Best free no-signup playground](https://playground.myztic.dev/best-free-html-css-js-playground-no-signup): A decision checklist.
 
 ## Product facts
 
