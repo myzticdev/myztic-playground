@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { strToU8, zipSync } from 'fflate'
 import { trackAnalyticsEvent } from './analytics'
+import { getExampleProject } from './examples'
 
 type Language = 'html' | 'css' | 'javascript'
 
@@ -58,6 +59,9 @@ button.addEventListener('click', () => {
 }
 
 function loadSavedCode(): PlaygroundCode {
+  const example = getExampleProject(new URLSearchParams(window.location.search).get('example'))
+  if (example) return example.code
+
   try {
     const saved = localStorage.getItem(STORAGE_KEY)
     if (!saved) return starterCode

@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { exampleProjects, type ExampleSlug } from './examples'
 
 function Header() {
   return <header className="site-header"><nav className="site-nav" aria-label="Primary navigation"><a className="site-brand" href="/"><span className="site-brand-mark" aria-hidden="true">✦</span><span>Myztic <strong>Playground</strong></span></a><div className="site-links"><a href="/examples">Examples</a><a href="/security">Security</a><a className="nav-cta" href="/app">Open playground <span aria-hidden="true">→</span></a></div></nav></header>
@@ -12,17 +13,22 @@ function PageShell({ children }: { children: ReactNode }) {
   return <div className="site-shell"><Header /><main>{children}</main><Footer /></div>
 }
 
-const examples = [
-  { kind: 'gradient-example', label: 'CSS • 18 lines', title: 'Animated gradient card', art: <span>soft<br /><em>gradients.</em></span>, description: 'Layer gradients and subtle motion into a polished callout card.' },
-  { kind: 'counter-example', label: 'JS • 24 lines', title: 'Interactive counter', art: <><button type="button" tabIndex={-1}>−</button><strong>42</strong><button type="button" tabIndex={-1}>+</button></>, description: 'Wire up a small, accessible counter with vanilla JavaScript.' },
-  { kind: 'profile-example', label: 'HTML • 31 lines', title: 'Developer profile card', art: <><span>JD</span><i></i><i></i></>, description: 'Build a responsive profile component using semantic HTML and CSS.' },
-  { kind: 'loader-example', label: 'CSS • 16 lines', title: 'Orbit loader', art: <span className="orbit-art"><i></i></span>, description: 'Explore transforms, keyframes, and reduced-motion-friendly animation.' },
-  { kind: 'form-example', label: 'HTML • 28 lines', title: 'Sign-up form', art: <><i></i><i></i><button type="button" tabIndex={-1}>Join waitlist</button></>, description: 'Practice labels, inputs, focus states, and concise form validation.' },
-  { kind: 'theme-example', label: 'JS • 21 lines', title: 'Theme switcher', art: <><span>☼</span><span>☾</span></>, description: 'Toggle a complete interface theme with custom properties and JavaScript.' },
-]
+const exampleClassNames: Record<ExampleSlug, string> = {
+  'gradient-card': 'gradient-example', counter: 'counter-example', 'profile-card': 'profile-example',
+  'orbit-loader': 'loader-example', 'signup-form': 'form-example', 'theme-switcher': 'theme-example',
+}
+
+function ExampleArtwork({ slug }: { slug: ExampleSlug }) {
+  if (slug === 'gradient-card') return <div className="gradient-mini"><small>CREATIVE CSS</small><strong>soft<br /><em>gradients.</em></strong><i>Explore →</i></div>
+  if (slug === 'counter') return <div className="counter-mini"><small>DAILY MOMENTUM</small><strong>42</strong><span><i>−</i><b>Reset</b><i>+</i></span></div>
+  if (slug === 'profile-card') return <div className="profile-mini"><span>AM<i></i></span><small>FRONTEND ENGINEER</small><strong>Alex Morgan</strong><b>Follow Alex</b></div>
+  if (slug === 'orbit-loader') return <div className="loader-mini"><span className="orbit-art"><i></i></span><small>Preparing your workspace</small></div>
+  if (slug === 'signup-form') return <div className="form-mini"><small>EARLY ACCESS</small><strong>Build with us.</strong><i></i><i></i><b>Join the waitlist →</b></div>
+  return <div className="theme-mini"><small>Myztic Notes</small><span>☼</span><strong>Good interfaces<br />feel inevitable.</strong></div>
+}
 
 export function ExamplesPage() {
-  return <PageShell><section className="page-hero section-wrap"><p className="eyebrow"><span></span> Example projects</p><h1>Start with something small.<br /><em>Make it your own.</em></h1><p>Open a compact frontend idea, inspect how it works, then remix it in Myztic Playground.</p></section><section className="examples-page section-wrap"><div className="example-grid full-grid">{examples.map((example) => <article className={`example-card ${example.kind}`} key={example.title}><div className="example-art">{example.art}</div><div><p><b>{example.label.split(' • ')[0]}</b> • {example.label.split(' • ')[1]}</p><h2>{example.title}</h2><p className="example-description">{example.description}</p><a href="/app">Open in playground <span>→</span></a></div></article>)}</div></section><section className="final-cta section-wrap"><div><p className="eyebrow"><span></span> Begin from zero</p><h2>Prefer a blank canvas?</h2><p>The playground is ready whenever you are.</p></div><a className="primary-cta" href="/app">Open blank playground <span>→</span></a></section></PageShell>
+  return <PageShell><section className="page-hero section-wrap"><p className="eyebrow"><span></span> Example projects</p><h1>Start with something small.<br /><em>Make it your own.</em></h1><p>Open a compact frontend idea, inspect how it works, then remix it in Myztic Playground.</p></section><section className="examples-page section-wrap"><div className="example-grid full-grid">{exampleProjects.map((example) => <article className={`example-card ${exampleClassNames[example.slug]}`} key={example.slug}><div className="example-art"><ExampleArtwork slug={example.slug} /></div><div><p><b>{example.category}</b> • {example.lines} lines</p><h2>{example.title}</h2><p className="example-description">{example.description}</p><a href={`/app?example=${example.slug}`}>Open code in playground <span>→</span></a></div></article>)}</div></section><section className="final-cta section-wrap"><div><p className="eyebrow"><span></span> Begin from zero</p><h2>Prefer a blank canvas?</h2><p>The playground is ready whenever you are.</p></div><a className="primary-cta" href="/app">Open blank playground <span>→</span></a></section></PageShell>
 }
 
 export function SecurityPage() {
