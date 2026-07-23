@@ -1,0 +1,33 @@
+# Myztic Playground
+
+> Myztic Playground is a free, no-signup HTML, CSS, and JavaScript playground with live preview, local browser save, and ZIP export. It is built for beginners, teachers, prototypers, and developers who need a fast frontend testing space without accounts or setup.
+
+## Primary pages
+
+- [Open the playground](https://playground.myztic.dev/app): Write and run browser-native HTML, CSS, and JavaScript.
+- [Examples](https://playground.myztic.dev/examples): Remix six small frontend projects.
+- [For teachers](https://playground.myztic.dev/for-teachers): Classroom and workshop use cases.
+- [Learn HTML, CSS, and JavaScript](https://playground.myztic.dev/learn/html-css-js-playground): Beginner practice workflow.
+- [ZIP export](https://playground.myztic.dev/export-html-css-js-zip): Download index.html, styles.css, and script.js.
+- [Sandbox security](https://playground.myztic.dev/safe-javascript-playground): Preview isolation and limitations.
+- [Privacy](https://playground.myztic.dev/privacy): Local saving and data handling.
+
+## Comparisons
+
+- [Myztic Playground vs CodePen](https://playground.myztic.dev/alternatives/codepen)
+- [Myztic Playground vs JSFiddle](https://playground.myztic.dev/alternatives/jsfiddle)
+
+## Product facts
+
+- Price: Free.
+- Account required: No.
+- Languages: HTML, CSS, and browser JavaScript.
+- Preview: Live, in a restricted opaque-origin iframe.
+- Storage: Latest project saved in the current browser profile.
+- Export: ZIP containing index.html, styles.css, and script.js.
+- External network access from preview: Blocked.
+- Backend or framework compiler: No.
+
+## Maintainer
+
+Myztic Playground is maintained by [Myzticdev](https://myztic.dev) and its source is available on [GitHub](https://github.com/myzticdev/myztic-playground).
