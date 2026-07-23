@@ -25,3 +25,31 @@ test('publishes complete social preview metadata and brand icons', async ({ page
   expect(manifest.ok()).toBe(true)
   expect(manifest.headers()['content-type']).toContain('application/manifest+json')
 })
+
+test('serves crawlable homepage content and discovery files', async ({ page, request }) => {
+  const response = await request.get('/')
+  const html = await response.text()
+  expect(html).toContain('<h1>Free HTML, CSS, and JavaScript Playground</h1>')
+  expect(html).toContain('application/ld+json')
+
+  await page.goto('/')
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Free HTML, CSS, and JavaScript Playground')
+  await expect(page.getByRole('link', { name: /Start coding for free/ }).first()).toHaveAttribute('href', '/app')
+
+  const [robots, sitemap] = await Promise.all([request.get('/robots.txt'), request.get('/sitemap.xml')])
+  expect(await robots.text()).toContain('Sitemap: https://playground.myztic.dev/sitemap.xml')
+  expect(await sitemap.text()).toContain('https://playground.myztic.dev/security')
+})
+
+test('exposes the requested supporting routes', async ({ page }) => {
+  await page.goto('/examples')
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Start with something small')
+  await expect(page.locator('.example-card')).toHaveCount(6)
+
+  await page.goto('/security')
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Your code stays contained')
+  await expect(page.getByText('Opaque-origin iframe')).toBeVisible()
+
+  await page.goto('/app')
+  await expect(page.getByRole('button', { name: 'Run' })).toBeVisible()
+})

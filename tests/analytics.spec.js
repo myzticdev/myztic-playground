@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('/')
+  await page.goto('/app')
 })
 
 test('keeps analytics disabled when build variables are absent', async ({ page }) => {

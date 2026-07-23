@@ -3,33 +3,120 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#090b10" />
+    <meta name="theme-color" content="#09090d" />
     <meta name="referrer" content="no-referrer" />
-    <meta name="description" content="A lightweight HTML, CSS, and JavaScript playground with an isolated live preview." />
+    <meta name="description" content="Test HTML, CSS, and JavaScript online with Myztic Playground, a fast browser-based frontend code playground with live preview." />
     <link rel="canonical" href="https://playground.myztic.dev/" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Myztic Playground" />
-    <meta property="og:title" content="Myztic Playground" />
-    <meta property="og:description" content="Edit HTML, CSS, and JavaScript in real time with an isolated live preview." />
+    <meta property="og:title" content="Myztic Playground — Free HTML, CSS &amp; JavaScript Tester" />
+    <meta property="og:description" content="Test HTML, CSS, and JavaScript online in a fast frontend code playground with a live, isolated preview." />
     <meta property="og:url" content="https://playground.myztic.dev/" />
     <meta property="og:image" content="https://playground.myztic.dev/social-preview.png" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1733" />
     <meta property="og:image:height" content="909" />
-    <meta property="og:image:alt" content="Myztic Playground code editors and live preview with the words Make something wonderful." />
+    <meta property="og:image:alt" content="Myztic Playground code editor and live preview." />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Myztic Playground" />
-    <meta name="twitter:description" content="Edit HTML, CSS, and JavaScript in real time with an isolated live preview." />
+    <meta name="twitter:title" content="Myztic Playground — Free HTML, CSS &amp; JavaScript Tester" />
+    <meta name="twitter:description" content="Test frontend code online with a fast browser-based editor and isolated live preview." />
     <meta name="twitter:image" content="https://playground.myztic.dev/social-preview.png" />
-    <meta name="twitter:image:alt" content="Myztic Playground code editors and live preview with the words Make something wonderful." />
+    <meta name="twitter:image:alt" content="Myztic Playground code editor and live preview." />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Myztic Playground",
+        "url": "https://playground.myztic.dev/",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires a modern web browser with JavaScript enabled",
+        "description": "Test HTML, CSS, and JavaScript online with a fast browser-based frontend code playground and live preview.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "creator": { "@type": "Organization", "name": "Myzticdev", "url": "https://myztic.dev" }
+      }
+    </script>
     <!-- Vite replaces this marker with a provider-specific CSP at build time. -->
     <meta http-equiv="Content-Security-Policy" content="__MYZTIC_MAIN_CSP__" />
-    <title>Myztic Playground</title>
+    <title>Myztic Playground — Free HTML, CSS &amp; JavaScript Tester</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="site-shell">
+        <header class="site-header">
+          <nav class="site-nav" aria-label="Primary navigation">
+            <a class="site-brand" href="/" aria-label="Myztic Playground home"><span class="site-brand-mark" aria-hidden="true">✦</span><span>Myztic <strong>Playground</strong></span></a>
+            <div class="site-links"><a href="/examples">Examples</a><a href="/security">Security</a><a class="nav-cta" href="/app">Open playground <span aria-hidden="true">→</span></a></div>
+          </nav>
+        </header>
+
+        <main>
+          <section class="hero section-wrap">
+            <div class="hero-copy">
+              <p class="eyebrow"><span></span> No sign-up. Free forever.</p>
+              <h1>Free HTML, CSS, and JavaScript Playground</h1>
+              <p class="hero-lede">Write frontend code, see the result instantly, and download your project when it feels right. Myztic Playground is a fast browser-based tester built for focused experiments.</p>
+              <div class="hero-actions"><a class="primary-cta" href="/app">Start coding for free <span aria-hidden="true">→</span></a><a class="text-link" href="#how-it-works">See how it works <span aria-hidden="true">↓</span></a></div>
+              <ul class="hero-notes"><li><span>✓</span> Runs in your browser</li><li><span>✓</span> Saved locally</li><li><span>✓</span> Export as ZIP</li></ul>
+            </div>
+
+            <div class="editor-demo" aria-label="Preview of the Myztic Playground editor">
+              <div class="demo-top"><span class="demo-brand"><i>✦</i> myztic/playground</span><span class="demo-run">▶ Run</span></div>
+              <div class="demo-tabs"><span class="active"><b>&lt;&gt;</b> HTML</span><span><b>#</b> CSS</span><span><b>JS</b> JavaScript</span></div>
+              <div class="demo-body">
+                <pre class="demo-code"><code><i>1</i> <span class="tag">&lt;main</span> <span class="attr">class</span>=<span class="value">&quot;hello&quot;</span><span class="tag">&gt;</span>
+<i>2</i>   <span class="tag">&lt;p&gt;</span>Hello, developer.<span class="tag">&lt;/p&gt;</span>
+<i>3</i>   <span class="tag">&lt;h1&gt;</span>Build something
+<i>4</i>      <span class="accent-code">wonderful.</span><span class="tag">&lt;/h1&gt;</span>
+<i>5</i>   <span class="tag">&lt;button&gt;</span>Start creating<span class="tag">&lt;/button&gt;</span>
+<i>6</i> <span class="tag">&lt;/main&gt;</span></code></pre>
+                <div class="demo-preview"><span>LIVE PREVIEW</span><div><small>Hello, developer.</small><strong>Build something<br><em>wonderful.</em></strong><button type="button" tabindex="-1">Start creating</button></div></div>
+              </div>
+              <div class="demo-status"><span><i></i> Saved locally</span><span>Ctrl + Enter to run</span></div>
+            </div>
+          </section>
+
+          <section class="trust-strip" aria-label="Playground technologies"><div class="section-wrap"><span>BUILT FOR THE OPEN WEB</span><ul><li><b>&lt;&gt;</b> HTML5</li><li><b>#</b> CSS3</li><li><b>JS</b> JavaScript</li><li><b>▣</b> Live Preview</li></ul></div></section>
+
+          <section class="intro-section section-wrap" id="how-it-works">
+            <div><p class="eyebrow"><span></span> Your scratchpad for the web</p><h2>From idea to working interface in seconds.</h2></div>
+            <div class="intro-copy"><p>Myztic Playground is an online HTML, CSS, and JavaScript tester. Type code into three focused editors and run it in a live preview beside your work—no local setup, package install, or account required.</p><p>Your project stays in your browser and is restored when you return. When you are ready to keep building, export clean HTML, CSS, and JavaScript files in one ZIP.</p></div>
+          </section>
+
+          <section class="features-section section-wrap">
+            <div class="section-heading"><p class="eyebrow"><span></span> Everything you need</p><h2>A focused toolkit, without the clutter.</h2></div>
+            <div class="feature-grid">
+              <article class="feature-card featured"><div class="feature-icon">▶</div><h3>Instant live preview</h3><p>Run HTML, CSS, and JavaScript together and see your changes in a clean preview panel.</p><div class="mini-preview"><span></span><span></span><span></span><strong>Ready when you are.</strong></div></article>
+              <article class="feature-card"><div class="feature-icon">⌘</div><h3>Three focused editors</h3><p>Switch cleanly between HTML, CSS, and JavaScript without toolbars getting in your way.</p></article>
+              <article class="feature-card"><div class="feature-icon">◇</div><h3>Private by design</h3><p>Your code runs inside an isolated browser sandbox and is never sent to a code execution server.</p></article>
+              <article class="feature-card"><div class="feature-icon">↓</div><h3>One-click export</h3><p>Download a ready-to-use ZIP containing index.html, styles.css, and script.js.</p></article>
+              <article class="feature-card"><div class="feature-icon">↻</div><h3>Local autosave</h3><p>Keep your latest work in local browser storage, ready for your next visit.</p></article>
+            </div>
+          </section>
+
+          <section class="audience-section section-wrap">
+            <div class="section-heading"><p class="eyebrow"><span></span> Made for making</p><h2>A playground for every kind of builder.</h2></div>
+            <ul class="audience-grid"><li><span>01</span><div><h3>Learning the basics</h3><p>Practice HTML structure, CSS styling, and browser JavaScript with immediate feedback.</p></div></li><li><span>02</span><div><h3>Testing an idea</h3><p>Reproduce a UI detail, try a CSS technique, or validate a small script without opening a project.</p></div></li><li><span>03</span><div><h3>Teaching the web</h3><p>Share a simple, distraction-free environment for workshops, demos, and coding lessons.</p></div></li><li><span>04</span><div><h3>Prototyping quickly</h3><p>Turn a rough interaction into a working frontend proof of concept while the thought is fresh.</p></div></li></ul>
+          </section>
+
+          <section class="examples-section section-wrap">
+            <div class="section-heading split-heading"><div><p class="eyebrow"><span></span> Try an example</p><h2>Start with a spark.</h2></div><a class="text-link" href="/examples">View all examples <span aria-hidden="true">→</span></a></div>
+            <div class="example-grid"><article class="example-card gradient-example"><div class="example-art"><span>soft<br><em>gradients.</em></span></div><div><p><b>CSS</b> • 18 lines</p><h3>Animated gradient card</h3><a href="/app">Open in playground <span>→</span></a></div></article><article class="example-card counter-example"><div class="example-art"><button>−</button><strong>42</strong><button>+</button></div><div><p><b>JS</b> • 24 lines</p><h3>Interactive counter</h3><a href="/app">Open in playground <span>→</span></a></div></article><article class="example-card profile-example"><div class="example-art"><span>JD</span><i></i><i></i></div><div><p><b>HTML</b> • 31 lines</p><h3>Developer profile card</h3><a href="/app">Open in playground <span>→</span></a></div></article></div>
+          </section>
+
+          <section class="faq-section section-wrap">
+            <div class="section-heading"><p class="eyebrow"><span></span> Common questions</p><h2>Good to know.</h2></div>
+            <div class="faq-grid"><article><h3>Is Myztic Playground really free?</h3><p>Yes. It is free to use, with no account, trial, or payment details required.</p></article><article><h3>Where is my code saved?</h3><p>Your current project is saved in your browser’s local storage. It is not uploaded to a Myztic server.</p></article><article><h3>Can I use libraries or external APIs?</h3><p>No. Network access is blocked inside the preview to keep the sandbox isolated and predictable.</p></article><article><h3>Is it safe to run JavaScript?</h3><p>User code runs in a restricted iframe without same-origin access, forms, popups, downloads, or top-level navigation. <a href="/security">Read the sandbox details.</a></p></article></div>
+          </section>
+
+          <section class="final-cta section-wrap"><div><p class="eyebrow"><span></span> Open a blank canvas</p><h2>Your next idea can be running in seconds.</h2><p>No setup. No account. Just the browser and a little curiosity.</p></div><a class="primary-cta" href="/app">Start coding for free <span aria-hidden="true">→</span></a></section>
+        </main>
+
+        <footer class="site-footer"><div class="section-wrap footer-inner"><div><a class="site-brand" href="/"><span class="site-brand-mark">✦</span><span>Myztic <strong>Playground</strong></span></a><p>A small, fast place to build for the open web.</p></div><nav aria-label="Footer navigation"><a href="/app">Playground</a><a href="/examples">Examples</a><a href="/security">Security</a><a href="https://myztic.dev">Myzticdev ↗</a></nav></div><div class="section-wrap footer-bottom"><span>© 2026 Myzticdev</span><span>Built with care for the open web.</span></div></footer>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

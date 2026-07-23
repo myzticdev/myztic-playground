@@ -171,10 +171,10 @@ export default function App() {
   return (
     <div className="app-shell">
       <header className="topbar">
-        <div className="brand" aria-label="Myztic Playground">
+        <a className="brand" href="/" aria-label="Myztic Playground home">
           <span className="brand-mark" aria-hidden="true">✦</span>
           <span>Myztic <strong>Playground</strong></span>
-        </div>
+        </a>
         <div className="actions">
           {GITHUB_REPOSITORY_URL ? (
             <a
