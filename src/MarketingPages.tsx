@@ -21,7 +21,7 @@ const exampleClassNames: Record<ExampleSlug, string> = {
 function ExampleArtwork({ slug }: { slug: ExampleSlug }) {
   if (slug === 'gradient-card') return <div className="gradient-mini"><small>CREATIVE CSS</small><strong>soft<br /><em>gradients.</em></strong><i>Explore →</i></div>
   if (slug === 'counter') return <div className="counter-mini"><small>DAILY MOMENTUM</small><strong>42</strong><span><i>−</i><b>Reset</b><i>+</i></span></div>
-  if (slug === 'profile-card') return <div className="profile-mini"><span>AM<i></i></span><small>FRONTEND ENGINEER</small><strong>Alex Morgan</strong><b>Follow Alex</b></div>
+  if (slug === 'profile-card') return <div className="profile-mini"><span>AM</span><small>FRONTEND ENGINEER</small><strong>Alex Morgan</strong><b>Follow Alex</b></div>
   if (slug === 'orbit-loader') return <div className="loader-mini"><span className="orbit-art"><i></i></span><small>Preparing your workspace</small></div>
   if (slug === 'signup-form') return <div className="form-mini"><small>EARLY ACCESS</small><strong>Build with us.</strong><i></i><i></i><b>Join the waitlist →</b></div>
   return <div className="theme-mini"><small>Myztic Notes</small><span>☼</span><strong>Good interfaces<br />feel inevitable.</strong></div>

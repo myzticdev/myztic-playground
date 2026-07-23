@@ -94,7 +94,7 @@ document.querySelector('#reset').addEventListener('click', () => { value = 0; re
       html: `<main>
   <article class="profile">
     <div class="cover"></div>
-    <div class="avatar">AM<span></span></div>
+    <div class="avatar">AM</div>
     <p class="role">FRONTEND ENGINEER</p>
     <h1>Alex Morgan</h1>
     <p class="bio">Building thoughtful interfaces and tiny tools for the open web.</p>
@@ -109,7 +109,6 @@ main { min-height: 100vh; display: grid; place-items: center; }
 .profile { position: relative; width: min(88vw, 390px); overflow: hidden; padding: 0 2.2rem 2.2rem; border: 1px solid #ffffff18; border-radius: 25px; background: #15121b; box-shadow: 0 30px 90px #0009; }
 .cover { height: 120px; margin-inline: -2.2rem; background: radial-gradient(circle at 25% 30%, #d38dfa, transparent 28%), radial-gradient(circle at 75% 80%, #5a7be9, transparent 32%), #2a1c38; }
 .avatar { position: relative; width: 78px; height: 78px; margin-top: -39px; display: grid; place-items: center; border: 5px solid #15121b; border-radius: 50%; color: #26152f; background: linear-gradient(135deg, #d9b5f2, #9b72cf); font-weight: 900; }
-.avatar span { position: absolute; right: 1px; bottom: 4px; width: 13px; height: 13px; border: 3px solid #15121b; border-radius: 50%; background: #6ee0a0; }
 .role { margin: 1.4rem 0 .5rem; color: #a682c5; font-size: .67rem; font-weight: 800; letter-spacing: .13em; }
 h1 { margin: 0; font-size: 2rem; letter-spacing: -.04em; }
 .bio { color: #918a99; line-height: 1.6; }
