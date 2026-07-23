@@ -62,19 +62,30 @@
               <ul class="hero-notes"><li><span>✓</span> Runs in your browser</li><li><span>✓</span> Saved locally</li><li><span>✓</span> Export as ZIP</li></ul>
             </div>
 
-            <div class="editor-demo" aria-label="Preview of the Myztic Playground editor">
-              <div class="demo-top"><span class="demo-brand"><i>✦</i> myztic/playground</span><span class="demo-run">▶ Run</span></div>
-              <div class="demo-tabs"><span class="active"><b>&lt;&gt;</b> HTML</span><span><b>#</b> CSS</span><span><b>JS</b> JavaScript</span></div>
-              <div class="demo-body">
-                <pre class="demo-code"><code><i>1</i> <span class="tag">&lt;main</span> <span class="attr">class</span>=<span class="value">&quot;hello&quot;</span><span class="tag">&gt;</span>
-<i>2</i>   <span class="tag">&lt;p&gt;</span>Hello, developer.<span class="tag">&lt;/p&gt;</span>
-<i>3</i>   <span class="tag">&lt;h1&gt;</span>Build something
-<i>4</i>      <span class="accent-code">wonderful.</span><span class="tag">&lt;/h1&gt;</span>
-<i>5</i>   <span class="tag">&lt;button&gt;</span>Start creating<span class="tag">&lt;/button&gt;</span>
-<i>6</i> <span class="tag">&lt;/main&gt;</span></code></pre>
-                <div class="demo-preview"><span>LIVE PREVIEW</span><div><small>Hello, developer.</small><strong>Build something<br><em>wonderful.</em></strong><button type="button" tabindex="-1">Start creating</button></div></div>
+            <div class="editor-demo" aria-label="Preview of the Myztic Playground application">
+              <div class="demo-appbar">
+                <span class="demo-app-brand"><i>✦</i><span>Myztic <strong>Playground</strong></span></span>
+                <span class="demo-app-actions" aria-hidden="true"><i class="github-dot">⌁</i><i class="download-dot">↓</i><i class="reset-dot">↻</i><i class="stop-dot">■</i><i class="run-dot">▶</i></span>
               </div>
-              <div class="demo-status"><span><i></i> Saved locally</span><span>Ctrl + Enter to run</span></div>
+              <div class="demo-workspace">
+                <div class="demo-panel demo-editor-panel">
+                  <div class="demo-tabs"><span class="active"><b>&lt;&gt;</b> HTML</span><span><b>#</b> CSS</span><span><b>JS</b> JavaScript</span></div>
+                  <div class="demo-editor-meta"><span>HTML</span><span>6 lines</span></div>
+                  <pre class="demo-code"><code><i>1</i> <span class="tag">&lt;main</span> <span class="attr">class</span>=<span class="value">&quot;card&quot;</span><span class="tag">&gt;</span>
+<i>2</i>   <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="value">&quot;eyebrow&quot;</span><span class="tag">&gt;</span>
+<i>3</i>     MYZTIC PLAYGROUND<span class="tag">&lt;/span&gt;</span>
+<i>4</i>   <span class="tag">&lt;h1&gt;</span>Make something
+<i>5</i>     <span class="tag">&lt;em&gt;</span><span class="accent-code">wonderful.</span><span class="tag">&lt;/em&gt;&lt;/h1&gt;</span>
+<i>6</i> <span class="tag">&lt;/main&gt;</span></code></pre>
+                  <div class="demo-panel-footer"><span><i></i> Saved locally</span><span>Ctrl + Enter to run</span></div>
+                </div>
+                <div class="demo-panel demo-live-panel">
+                  <div class="demo-preview-head"><strong>Preview</strong><span>Running</span></div>
+                  <div class="demo-preview-frame">
+                    <div class="demo-preview-card"><small>MYZTIC PLAYGROUND</small><strong>Make something<br><em>wonderful.</em></strong><p>Edit the code, then press Run to bring it to life.</p><button type="button" tabindex="-1">Add some magic</button></div>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 
