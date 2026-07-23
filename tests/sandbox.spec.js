@@ -10,7 +10,7 @@ async function setEditor(page, language, value) {
 }
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('/')
+  await page.goto('/app')
   await page.evaluate(() => localStorage.clear())
   await page.reload()
 })

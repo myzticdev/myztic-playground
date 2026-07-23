@@ -1,9 +1,9 @@
 {
   "name": "Myztic Playground",
   "short_name": "Myztic",
-  "description": "A lightweight HTML, CSS, and JavaScript playground with an isolated live preview.",
-  "id": "/",
-  "start_url": "/",
+  "description": "A free browser-based HTML, CSS, and JavaScript tester with an isolated live preview.",
+  "id": "/app",
+  "start_url": "/app",
   "display": "standalone",
   "background_color": "#090b10",
   "theme_color": "#090b10",
