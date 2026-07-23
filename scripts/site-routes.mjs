@@ -24,3 +24,7 @@ export const englishRoutes = [
 export function spanishPath(englishPath) {
   return englishPath === '/' ? '/es' : `/es${englishPath}`
 }
+
+export function portuguesePath(englishPath) {
+  return englishPath === '/' ? '/pt-br' : `/pt-br${englishPath}`
+}

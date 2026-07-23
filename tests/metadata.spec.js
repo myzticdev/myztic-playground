@@ -7,6 +7,7 @@ test('publishes complete social preview metadata and brand icons', async ({ page
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://playground.myztic.dev/')
   await expect(page.locator('link[rel="alternate"][hreflang="en"]')).toHaveAttribute('href', 'https://playground.myztic.dev/')
   await expect(page.locator('link[rel="alternate"][hreflang="es"]')).toHaveAttribute('href', 'https://playground.myztic.dev/es')
+  await expect(page.locator('link[rel="alternate"][hreflang="pt-BR"]')).toHaveAttribute('href', 'https://playground.myztic.dev/pt-br')
   await expect(page.locator('link[rel="alternate"][hreflang="x-default"]')).toHaveAttribute('href', 'https://playground.myztic.dev/')
   await expect(page.locator('link[rel="icon"]')).toHaveAttribute('href', '/favicon.svg')
   await expect(page.locator('link[rel="manifest"]')).toHaveAttribute('href', '/site.webmanifest')

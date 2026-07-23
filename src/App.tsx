@@ -77,6 +77,24 @@ button.addEventListener('click', () => {
 });`,
 }
 
+const portugueseStarterCode: PlaygroundCode = {
+  ...starterCode,
+  html: `<main class="card">
+  <span class="eyebrow">MYZTIC PLAYGROUND</span>
+  <h1>Crie algo <em>maravilhoso.</em></h1>
+  <p>Edite o código e clique em Executar para dar vida a ele.</p>
+  <button id="spark">Adicionar magia</button>
+</main>`,
+  javascript: `const button = document.querySelector('#spark');
+
+button.addEventListener('click', () => {
+  const colors = ['#b99cff', '#ff9ed2', '#8ee6d0', '#ffd479'];
+  const color = colors[Math.floor(Math.random() * colors.length)];
+  document.querySelector('em').style.color = color;
+  button.textContent = 'Magia adicionada ✦';
+});`,
+}
+
 function loadSavedCode(defaultCode: PlaygroundCode): PlaygroundCode {
   const example = getExampleProject(new URLSearchParams(window.location.search).get('example'))
   if (example) return example.code
@@ -114,7 +132,7 @@ function createDownloadHtml(html: string, locale: Locale) {
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${locale === 'es' ? 'Proyecto de Myztic Playground' : 'Myztic Playground Project'}</title>
+    <title>${locale === 'es' ? 'Proyecto de Myztic Playground' : locale === 'pt-BR' ? 'Projeto do Myztic Playground' : 'Myztic Playground Project'}</title>
     ${stylesheet}
   </head>
   <body>
@@ -145,10 +163,17 @@ const uiText = {
     shortcut: 'Ctrl / ⌘ + Enter para ejecutar', livePreview: 'Vista previa', preview: 'Vista previa', running: 'En ejecución', stopped: 'Detenido',
     frame: 'Vista previa del código',
   },
+  'pt-BR': {
+    home: 'Início do Myztic Playground', github: 'Abrir repositório no GitHub', githubSoon: 'Repositório no GitHub em breve',
+    download: 'Baixar ZIP', reset: 'Redefinir código', stop: 'Parar', stopTitle: 'Parar pré-visualização', run: 'Executar', runTitle: 'Executar pré-visualização',
+    editor: 'Editor de código', editorLanguage: 'Linguagem do editor', lines: 'linhas', code: 'código', saved: 'Salvo localmente',
+    shortcut: 'Ctrl / ⌘ + Enter para executar', livePreview: 'Pré-visualização', preview: 'Pré-visualização', running: 'Em execução', stopped: 'Parado',
+    frame: 'Pré-visualização do código',
+  },
 } as const
 
 export default function App({ locale = 'en' }: { locale?: Locale }) {
-  const initialCode = locale === 'es' ? spanishStarterCode : starterCode
+  const initialCode = locale === 'es' ? spanishStarterCode : locale === 'pt-BR' ? portugueseStarterCode : starterCode
   const text = uiText[locale]
   const [code, setCode] = useState<PlaygroundCode>(() => loadSavedCode(initialCode))
   const [activeLanguage, setActiveLanguage] = useState<Language>('html')
@@ -213,7 +238,7 @@ export default function App({ locale = 'en' }: { locale?: Locale }) {
   return (
     <div className="app-shell">
       <header className="topbar">
-        <a className="brand" href={locale === 'es' ? '/es' : '/'} aria-label={text.home}>
+        <a className="brand" href={locale === 'es' ? '/es' : locale === 'pt-BR' ? '/pt-br' : '/'} aria-label={text.home}>
           <span className="brand-mark" aria-hidden="true">✦</span>
           <span>Myztic <strong>Playground</strong></span>
         </a>

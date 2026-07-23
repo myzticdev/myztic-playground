@@ -1,0 +1,23 @@
+# Myztic Playground
+
+> Myztic Playground é um playground gratuito de HTML, CSS e JavaScript, sem cadastro, com pré-visualização isolada, salvamento local no navegador e exportação ZIP.
+
+## Páginas principais
+
+- [Início](https://playground.myztic.dev/pt-br): visão geral dos recursos e respostas rápidas.
+- [Abrir playground](https://playground.myztic.dev/pt-br/app): editor de HTML, CSS e JavaScript.
+- [Exemplos](https://playground.myztic.dev/pt-br/examples): seis projetos frontend editáveis.
+- [Exportação ZIP](https://playground.myztic.dev/pt-br/export-html-css-js-zip): como baixar index.html, styles.css e script.js.
+- [Para professores](https://playground.myztic.dev/pt-br/for-teachers): fluxo de aula sem contas de aluno.
+- [Privacidade](https://playground.myztic.dev/pt-br/privacy): salvamento local e tratamento do código.
+- [Segurança do JavaScript](https://playground.myztic.dev/pt-br/safe-javascript-playground): sandbox, limites e práticas seguras.
+
+## Comparações
+
+- [CodePen vs JSFiddle vs Myztic Playground](https://playground.myztic.dev/pt-br/codepen-vs-jsfiddle-vs-myztic-playground)
+- [Alternativa ao CodePen](https://playground.myztic.dev/pt-br/alternatives/codepen)
+- [Alternativa ao JSFiddle](https://playground.myztic.dev/pt-br/alternatives/jsfiddle)
+
+## Limitações importantes
+
+O Myztic Playground executa apenas HTML, CSS e JavaScript do lado do cliente. Ele não oferece Node.js, backend, pacotes npm, sincronização na nuvem, colaboração ou acesso de rede na pré-visualização. O salvamento local não sincroniza entre dispositivos e pode ser perdido quando os dados do navegador são apagados.

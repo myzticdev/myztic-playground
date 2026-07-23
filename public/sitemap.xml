@@ -5,6 +5,7 @@
     <loc>https://playground.myztic.dev/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -14,6 +15,17 @@
     <loc>https://playground.myztic.dev/es</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/" />
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://playground.myztic.dev/pt-br</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -23,6 +35,7 @@
     <loc>https://playground.myztic.dev/app</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/app" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/app" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/app" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/app" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -32,6 +45,17 @@
     <loc>https://playground.myztic.dev/es/app</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/app" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/app" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/app" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/app" />
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://playground.myztic.dev/pt-br/app</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/app" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/app" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/app" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/app" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -41,6 +65,7 @@
     <loc>https://playground.myztic.dev/examples</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/examples" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/examples" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/examples" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/examples" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -50,6 +75,17 @@
     <loc>https://playground.myztic.dev/es/examples</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/examples" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/examples" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/examples" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/examples" />
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://playground.myztic.dev/pt-br/examples</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/examples" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/examples" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/examples" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/examples" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -59,6 +95,7 @@
     <loc>https://playground.myztic.dev/security</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/security" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/security" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/security" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/security" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -68,6 +105,17 @@
     <loc>https://playground.myztic.dev/es/security</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/security" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/security" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/security" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/security" />
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://playground.myztic.dev/pt-br/security</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/security" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/security" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/security" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/security" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -77,6 +125,7 @@
     <loc>https://playground.myztic.dev/safe-javascript-playground</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/safe-javascript-playground" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/safe-javascript-playground" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/safe-javascript-playground" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/safe-javascript-playground" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -86,6 +135,17 @@
     <loc>https://playground.myztic.dev/es/safe-javascript-playground</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/safe-javascript-playground" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/safe-javascript-playground" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/safe-javascript-playground" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/safe-javascript-playground" />
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://playground.myztic.dev/pt-br/safe-javascript-playground</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/safe-javascript-playground" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/safe-javascript-playground" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/safe-javascript-playground" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/safe-javascript-playground" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -95,6 +155,7 @@
     <loc>https://playground.myztic.dev/for-teachers</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/for-teachers" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/for-teachers" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/for-teachers" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/for-teachers" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -104,6 +165,17 @@
     <loc>https://playground.myztic.dev/es/for-teachers</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/for-teachers" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/for-teachers" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/for-teachers" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/for-teachers" />
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://playground.myztic.dev/pt-br/for-teachers</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/for-teachers" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/for-teachers" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/for-teachers" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/for-teachers" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -113,6 +185,7 @@
     <loc>https://playground.myztic.dev/learn/html-css-js-playground</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/learn/html-css-js-playground" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/learn/html-css-js-playground" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/learn/html-css-js-playground" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/learn/html-css-js-playground" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -122,6 +195,17 @@
     <loc>https://playground.myztic.dev/es/learn/html-css-js-playground</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/learn/html-css-js-playground" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/learn/html-css-js-playground" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/learn/html-css-js-playground" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/learn/html-css-js-playground" />
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://playground.myztic.dev/pt-br/learn/html-css-js-playground</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/learn/html-css-js-playground" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/learn/html-css-js-playground" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/learn/html-css-js-playground" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/learn/html-css-js-playground" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -131,6 +215,7 @@
     <loc>https://playground.myztic.dev/export-html-css-js-zip</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/export-html-css-js-zip" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/export-html-css-js-zip" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/export-html-css-js-zip" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/export-html-css-js-zip" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -140,6 +225,17 @@
     <loc>https://playground.myztic.dev/es/export-html-css-js-zip</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/export-html-css-js-zip" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/export-html-css-js-zip" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/export-html-css-js-zip" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/export-html-css-js-zip" />
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://playground.myztic.dev/pt-br/export-html-css-js-zip</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/export-html-css-js-zip" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/export-html-css-js-zip" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/export-html-css-js-zip" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/export-html-css-js-zip" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -149,6 +245,7 @@
     <loc>https://playground.myztic.dev/alternatives/codepen</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/alternatives/codepen" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/alternatives/codepen" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/alternatives/codepen" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/alternatives/codepen" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -158,6 +255,17 @@
     <loc>https://playground.myztic.dev/es/alternatives/codepen</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/alternatives/codepen" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/alternatives/codepen" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/alternatives/codepen" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/alternatives/codepen" />
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://playground.myztic.dev/pt-br/alternatives/codepen</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/alternatives/codepen" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/alternatives/codepen" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/alternatives/codepen" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/alternatives/codepen" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -167,6 +275,7 @@
     <loc>https://playground.myztic.dev/alternatives/jsfiddle</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/alternatives/jsfiddle" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/alternatives/jsfiddle" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/alternatives/jsfiddle" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/alternatives/jsfiddle" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -176,6 +285,17 @@
     <loc>https://playground.myztic.dev/es/alternatives/jsfiddle</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/alternatives/jsfiddle" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/alternatives/jsfiddle" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/alternatives/jsfiddle" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/alternatives/jsfiddle" />
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://playground.myztic.dev/pt-br/alternatives/jsfiddle</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/alternatives/jsfiddle" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/alternatives/jsfiddle" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/alternatives/jsfiddle" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/alternatives/jsfiddle" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -185,6 +305,7 @@
     <loc>https://playground.myztic.dev/codepen-vs-jsfiddle-vs-myztic-playground</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/codepen-vs-jsfiddle-vs-myztic-playground" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/codepen-vs-jsfiddle-vs-myztic-playground" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/codepen-vs-jsfiddle-vs-myztic-playground" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/codepen-vs-jsfiddle-vs-myztic-playground" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -194,6 +315,17 @@
     <loc>https://playground.myztic.dev/es/codepen-vs-jsfiddle-vs-myztic-playground</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/codepen-vs-jsfiddle-vs-myztic-playground" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/codepen-vs-jsfiddle-vs-myztic-playground" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/codepen-vs-jsfiddle-vs-myztic-playground" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/codepen-vs-jsfiddle-vs-myztic-playground" />
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://playground.myztic.dev/pt-br/codepen-vs-jsfiddle-vs-myztic-playground</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/codepen-vs-jsfiddle-vs-myztic-playground" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/codepen-vs-jsfiddle-vs-myztic-playground" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/codepen-vs-jsfiddle-vs-myztic-playground" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/codepen-vs-jsfiddle-vs-myztic-playground" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -203,6 +335,7 @@
     <loc>https://playground.myztic.dev/best-free-html-css-js-playground-no-signup</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/best-free-html-css-js-playground-no-signup" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/best-free-html-css-js-playground-no-signup" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/best-free-html-css-js-playground-no-signup" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/best-free-html-css-js-playground-no-signup" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -212,6 +345,17 @@
     <loc>https://playground.myztic.dev/es/best-free-html-css-js-playground-no-signup</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/best-free-html-css-js-playground-no-signup" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/best-free-html-css-js-playground-no-signup" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/best-free-html-css-js-playground-no-signup" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/best-free-html-css-js-playground-no-signup" />
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://playground.myztic.dev/pt-br/best-free-html-css-js-playground-no-signup</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/best-free-html-css-js-playground-no-signup" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/best-free-html-css-js-playground-no-signup" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/best-free-html-css-js-playground-no-signup" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/best-free-html-css-js-playground-no-signup" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -221,6 +365,7 @@
     <loc>https://playground.myztic.dev/html-css-js-playground-for-beginners</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/html-css-js-playground-for-beginners" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/html-css-js-playground-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/html-css-js-playground-for-beginners" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/html-css-js-playground-for-beginners" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -230,6 +375,17 @@
     <loc>https://playground.myztic.dev/es/html-css-js-playground-for-beginners</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/html-css-js-playground-for-beginners" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/html-css-js-playground-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/html-css-js-playground-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/html-css-js-playground-for-beginners" />
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://playground.myztic.dev/pt-br/html-css-js-playground-for-beginners</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/html-css-js-playground-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/html-css-js-playground-for-beginners" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/html-css-js-playground-for-beginners" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/html-css-js-playground-for-beginners" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -239,6 +395,7 @@
     <loc>https://playground.myztic.dev/online-javascript-playground-live-preview</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/online-javascript-playground-live-preview" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/online-javascript-playground-live-preview" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/online-javascript-playground-live-preview" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/online-javascript-playground-live-preview" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -248,6 +405,17 @@
     <loc>https://playground.myztic.dev/es/online-javascript-playground-live-preview</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/online-javascript-playground-live-preview" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/online-javascript-playground-live-preview" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/online-javascript-playground-live-preview" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/online-javascript-playground-live-preview" />
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://playground.myztic.dev/pt-br/online-javascript-playground-live-preview</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/online-javascript-playground-live-preview" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/online-javascript-playground-live-preview" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/online-javascript-playground-live-preview" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/online-javascript-playground-live-preview" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -257,6 +425,7 @@
     <loc>https://playground.myztic.dev/download-html-css-js-project-as-zip</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/download-html-css-js-project-as-zip" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/download-html-css-js-project-as-zip" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/download-html-css-js-project-as-zip" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/download-html-css-js-project-as-zip" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -266,6 +435,17 @@
     <loc>https://playground.myztic.dev/es/download-html-css-js-project-as-zip</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/download-html-css-js-project-as-zip" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/download-html-css-js-project-as-zip" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/download-html-css-js-project-as-zip" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/download-html-css-js-project-as-zip" />
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://playground.myztic.dev/pt-br/download-html-css-js-project-as-zip</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/download-html-css-js-project-as-zip" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/download-html-css-js-project-as-zip" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/download-html-css-js-project-as-zip" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/download-html-css-js-project-as-zip" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -275,6 +455,7 @@
     <loc>https://playground.myztic.dev/local-save-code-playground</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/local-save-code-playground" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/local-save-code-playground" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/local-save-code-playground" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/local-save-code-playground" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -284,6 +465,17 @@
     <loc>https://playground.myztic.dev/es/local-save-code-playground</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/local-save-code-playground" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/local-save-code-playground" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/local-save-code-playground" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/local-save-code-playground" />
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://playground.myztic.dev/pt-br/local-save-code-playground</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/local-save-code-playground" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/local-save-code-playground" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/local-save-code-playground" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/local-save-code-playground" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -293,6 +485,7 @@
     <loc>https://playground.myztic.dev/browser-based-frontend-playground</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/browser-based-frontend-playground" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/browser-based-frontend-playground" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/browser-based-frontend-playground" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/browser-based-frontend-playground" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -302,6 +495,17 @@
     <loc>https://playground.myztic.dev/es/browser-based-frontend-playground</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/browser-based-frontend-playground" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/browser-based-frontend-playground" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/browser-based-frontend-playground" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/browser-based-frontend-playground" />
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://playground.myztic.dev/pt-br/browser-based-frontend-playground</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/browser-based-frontend-playground" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/browser-based-frontend-playground" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/browser-based-frontend-playground" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/browser-based-frontend-playground" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -311,6 +515,7 @@
     <loc>https://playground.myztic.dev/privacy</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/privacy" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/privacy" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/privacy" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/privacy" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -320,6 +525,17 @@
     <loc>https://playground.myztic.dev/es/privacy</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/privacy" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/privacy" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/privacy" />
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://playground.myztic.dev/pt-br/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/privacy" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/privacy" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/privacy" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/privacy" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -329,6 +545,7 @@
     <loc>https://playground.myztic.dev/about</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/about" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/about" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/about" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/about" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -338,6 +555,17 @@
     <loc>https://playground.myztic.dev/es/about</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/about" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/about" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/about" />
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://playground.myztic.dev/pt-br/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/about" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/about" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/about" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/about" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -347,6 +575,7 @@
     <loc>https://playground.myztic.dev/changelog</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/changelog" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/changelog" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/changelog" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/changelog" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>weekly</changefreq>
@@ -356,6 +585,17 @@
     <loc>https://playground.myztic.dev/es/changelog</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/changelog" />
     <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/changelog" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/changelog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/changelog" />
+    <lastmod>2026-07-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://playground.myztic.dev/pt-br/changelog</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://playground.myztic.dev/changelog" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://playground.myztic.dev/es/changelog" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://playground.myztic.dev/pt-br/changelog" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://playground.myztic.dev/changelog" />
     <lastmod>2026-07-23</lastmod>
     <changefreq>weekly</changefreq>
