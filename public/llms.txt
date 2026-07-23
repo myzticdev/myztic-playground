@@ -42,3 +42,9 @@ Myztic Playground runs browser-native HTML, CSS, and JavaScript only. It does no
 
 - [About Myztic Playground](https://playground.myztic.dev/about): Product purpose, intended scope, and maintainer.
 - [Source code](https://github.com/myzticdev/myztic-playground): Public repository maintained by Myzticdev.
+
+## Languages
+
+- [English](https://playground.myztic.dev/)
+- [Español](https://playground.myztic.dev/es)
+- [Português (Brasil)](https://playground.myztic.dev/pt-br)

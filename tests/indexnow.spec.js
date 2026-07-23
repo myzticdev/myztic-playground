@@ -28,14 +28,16 @@ test('builds a same-host IndexNow payload from the sitemap', async () => {
   })
 })
 
-test('includes every English and Spanish sitemap URL in IndexNow submissions', async () => {
+test('includes every English, Spanish, and Brazilian Portuguese sitemap URL in IndexNow submissions', async () => {
   const sitemap = await readFile('public/sitemap.xml', 'utf8')
   const urls = parseSitemapUrls(sitemap)
   const payload = createIndexNowPayload({ urls })
 
-  expect(urls).toHaveLength(40)
+  expect(urls).toHaveLength(60)
   expect(payload.urlList).toContain('https://playground.myztic.dev/es')
   expect(payload.urlList).toContain('https://playground.myztic.dev/es/alternatives/codepen')
+  expect(payload.urlList).toContain('https://playground.myztic.dev/pt-br')
+  expect(payload.urlList).toContain('https://playground.myztic.dev/pt-br/alternatives/codepen')
 })
 
 test('rejects URLs that do not belong to the verified host', async () => {

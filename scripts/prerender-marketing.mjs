@@ -147,18 +147,24 @@ const spanishPages = JSON.parse(await readFile(join(projectRoot, 'src', 'spanish
 for (const [path, page] of Object.entries(spanishPages)) {
   pages[path] = { ...page, questions: page.faqs }
 }
+const portuguesePages = JSON.parse(await readFile(join(projectRoot, 'src', 'portuguese-content.json'), 'utf8'))
+for (const [path, page] of Object.entries(portuguesePages)) {
+  pages[path] = { ...page, questions: page.faqs }
+}
 
 const escapeHtml = (value) => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;')
 const source = await readFile(join(outputRoot, 'index.html'), 'utf8')
 
 for (const [path, page] of Object.entries(pages)) {
   const isSpanish = path === '/es' || path.startsWith('/es/')
-  const language = isSpanish ? 'es' : 'en'
-  const englishPath = isSpanish ? (path === '/es' ? '/' : path.slice(3)) : path
+  const isPortuguese = path === '/pt-br' || path.startsWith('/pt-br/')
+  const language = isSpanish ? 'es' : isPortuguese ? 'pt-BR' : 'en'
+  const englishPath = isSpanish ? (path === '/es' ? '/' : path.slice(3)) : isPortuguese ? (path === '/pt-br' ? '/' : path.slice(6)) : path
   const spanishPath = englishPath === '/' ? '/es' : `/es${englishPath}`
+  const portuguesePath = englishPath === '/' ? '/pt-br' : `/pt-br${englishPath}`
   const canonical = `${baseUrl}${path}`
-  const homePath = isSpanish ? '/es' : '/'
-  const comparisonPath = isSpanish ? '/es/codepen-vs-jsfiddle-vs-myztic-playground' : '/codepen-vs-jsfiddle-vs-myztic-playground'
+  const homePath = isSpanish ? '/es' : isPortuguese ? '/pt-br' : '/'
+  const comparisonPath = isSpanish ? '/es/codepen-vs-jsfiddle-vs-myztic-playground' : isPortuguese ? '/pt-br/codepen-vs-jsfiddle-vs-myztic-playground' : '/codepen-vs-jsfiddle-vs-myztic-playground'
   const graph = [
     { '@type': page.schemaType ?? 'WebPage', name: page.title, url: canonical, description: page.description, dateModified: '2026-07-23', inLanguage: language, isPartOf: { '@type': 'WebSite', name: 'Myztic Playground', url: `${baseUrl}/` } },
     { '@type': 'FAQPage', inLanguage: language, mainEntity: page.questions.map(([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } })) },
@@ -167,32 +173,37 @@ for (const [path, page] of Object.entries(pages)) {
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Myztic Playground', item: `${baseUrl}${homePath}` },
-      { '@type': 'ListItem', position: 2, name: isSpanish ? 'Comparativas' : 'Comparisons', item: `${baseUrl}${comparisonPath}` },
+      { '@type': 'ListItem', position: 2, name: isSpanish ? 'Comparativas' : isPortuguese ? 'Comparações' : 'Comparisons', item: `${baseUrl}${comparisonPath}` },
       { '@type': 'ListItem', position: 3, name: page.title, item: canonical },
     ],
   })
-  if (path === '/changelog' || path === '/es/changelog') graph.push({
-    '@type': 'ItemList', name: isSpanish ? 'Novedades de Myztic Playground de julio de 2026' : 'Myztic Playground July 2026 updates',
+  if (path === '/changelog' || path === '/es/changelog' || path === '/pt-br/changelog') graph.push({
+    '@type': 'ItemList', name: isSpanish ? 'Novedades de Myztic Playground de julio de 2026' : isPortuguese ? 'Novidades do Myztic Playground em julho de 2026' : 'Myztic Playground July 2026 updates',
     itemListElement: (isSpanish
       ? ['Editor de HTML, CSS y JavaScript sin registro', 'Vista previa', 'Guardado local', 'Exportación ZIP', 'Guías y comparativas']
+      : isPortuguese
+        ? ['Playground de HTML, CSS e JavaScript sem cadastro', 'Pré-visualização', 'Salvamento local', 'Exportação ZIP', 'Guias e comparações']
       : ['No-signup HTML, CSS, and JavaScript editor', 'Live preview', 'Local browser save', 'ZIP export', 'Comparison and support guides']
     ).map((name, index) => ({ '@type': 'ListItem', position: index + 1, name })),
   })
   const schema = { '@context': 'https://schema.org', '@graph': graph }
   const labels = isSpanish
     ? { nav: 'Navegación principal', examples: 'Ejemplos', teachers: 'Para docentes', compare: 'Comparar', open: 'Abrir editor', glance: 'Resumen', explore: 'Seguir explorando', home: 'Inicio', answer: 'Respuesta rápida', faq: 'Preguntas frecuentes', updated: 'Última actualización 23 de julio de 2026', cta: 'Convierte una idea en una página que funciona.', ctaBody: 'Sin configuración, cuenta ni datos de pago.' }
+    : isPortuguese
+      ? { nav: 'Navegação principal', examples: 'Exemplos', teachers: 'Para professores', compare: 'Comparar', open: 'Abrir playground', glance: 'Resumo', explore: 'Continue explorando', home: 'Início', answer: 'Resposta rápida', faq: 'Perguntas frequentes', updated: 'Última atualização em 23 de julho de 2026', cta: 'Transforme uma ideia em uma página funcional.', ctaBody: 'Sem configuração, conta ou dados de pagamento.' }
     : { nav: 'Primary navigation', examples: 'Examples', teachers: 'For teachers', compare: 'Compare', open: 'Open playground', glance: 'At a glance', explore: 'Keep exploring', home: 'Homepage', answer: 'Quick answer', faq: 'Frequently asked questions', updated: 'Last updated July 23, 2026', cta: 'Turn an idea into a working page.', ctaBody: 'No setup, account, or payment details required.' }
-  const prefix = isSpanish ? '/es' : ''
-  const selectLanguage = isSpanish ? 'Seleccionar idioma' : 'Select language'
-  const currentLanguage = isSpanish ? 'Español' : 'English'
-  const currentCode = isSpanish ? 'ES' : 'EN'
-  const languageMenu = `<nav class="language-menu" aria-label="${isSpanish ? 'Idioma' : 'Language'}"><details><summary class="language-trigger" aria-label="${selectLanguage}: ${currentLanguage}"><span class="language-globe" aria-hidden="true">◎</span><span class="language-current">${currentLanguage}</span><span class="language-short" aria-hidden="true">${currentCode}</span><span class="language-chevron" aria-hidden="true">⌄</span></summary><div class="language-popover"><p>${selectLanguage}</p><a href="${englishPath}" lang="en" hreflang="en" aria-label="English"${isSpanish ? '' : ' aria-current="page"'}><span>English</span><small>EN</small>${isSpanish ? '' : '<b aria-hidden="true">✓</b>'}</a><a href="${spanishPath}" lang="es" hreflang="es" aria-label="Español"${isSpanish ? ' aria-current="page"' : ''}><span>Español</span><small>ES</small>${isSpanish ? '<b aria-hidden="true">✓</b>' : ''}</a></div></details></nav>`
+  const prefix = isSpanish ? '/es' : isPortuguese ? '/pt-br' : ''
+  const selectLanguage = isSpanish ? 'Seleccionar idioma' : isPortuguese ? 'Selecionar idioma' : 'Select language'
+  const currentLanguage = isSpanish ? 'Español' : isPortuguese ? 'Português (Brasil)' : 'English'
+  const currentCode = isSpanish ? 'ES' : isPortuguese ? 'PT' : 'EN'
+  const languageMenu = `<nav class="language-menu" aria-label="${isSpanish || isPortuguese ? 'Idioma' : 'Language'}"><details><summary class="language-trigger" aria-label="${selectLanguage}: ${currentLanguage}"><span class="language-globe" aria-hidden="true">◎</span><span class="language-current">${currentLanguage}</span><span class="language-short" aria-hidden="true">${currentCode}</span><span class="language-chevron" aria-hidden="true">⌄</span></summary><div class="language-popover"><p>${selectLanguage}</p><a href="${englishPath}" lang="en" hreflang="en" aria-label="English"${language === 'en' ? ' aria-current="page"' : ''}><span>English</span><small>EN</small>${language === 'en' ? '<b aria-hidden="true">✓</b>' : ''}</a><a href="${spanishPath}" lang="es" hreflang="es" aria-label="Español"${language === 'es' ? ' aria-current="page"' : ''}><span>Español</span><small>ES</small>${language === 'es' ? '<b aria-hidden="true">✓</b>' : ''}</a><a href="${portuguesePath}" lang="pt-BR" hreflang="pt-BR" aria-label="Português (Brasil)"${language === 'pt-BR' ? ' aria-current="page"' : ''}><span>Português (Brasil)</span><small>PT</small>${language === 'pt-BR' ? '<b aria-hidden="true">✓</b>' : ''}</a></div></details></nav>`
   const rowMarkup = page.rows?.length ? `<section><h2>${labels.glance}</h2><div class="feature-table" role="table">${page.rows.map(([label, value]) => `<div class="feature-row" role="row"><strong role="rowheader">${escapeHtml(label)}</strong><span role="cell">${escapeHtml(value)}</span></div>`).join('')}</div></section>` : ''
   const sectionMarkup = page.sections?.map(([heading, text]) => `<section><h2>${escapeHtml(heading)}</h2><p class="guide-paragraph">${escapeHtml(text)}</p></section>`).join('') ?? ''
   const relatedMarkup = `<aside class="related-links"><h2>${labels.explore}</h2><div><a href="${homePath}">${labels.home} →</a><a href="${prefix}/codepen-vs-jsfiddle-vs-myztic-playground">${labels.compare} →</a><a href="${prefix}/alternatives/codepen">CodePen →</a><a href="${prefix}/alternatives/jsfiddle">JSFiddle →</a><a href="${prefix}/export-html-css-js-zip">ZIP →</a><a href="${prefix}/for-teachers">${labels.teachers} →</a><a href="${prefix}/privacy">Privacidad / Privacy →</a><a href="${prefix}/safe-javascript-playground">JavaScript →</a></div></aside>`
   const fallback = `<div class="site-shell"><header class="site-header"><nav class="site-nav" aria-label="${labels.nav}"><a class="site-brand" href="${homePath}">Myztic <strong>Playground</strong></a><div class="site-links"><a href="${prefix}/examples">${labels.examples}</a><a href="${prefix}/for-teachers">${labels.teachers}</a><a href="${prefix}/codepen-vs-jsfiddle-vs-myztic-playground">${labels.compare}</a>${languageMenu}<a class="nav-cta" href="${prefix}/app">${labels.open} →</a></div></nav></header><main><section class="page-hero guide-hero section-wrap"><p class="eyebrow">${escapeHtml(page.eyebrow ?? 'Myztic Playground')}</p><h1>${escapeHtml(page.heading)}</h1><p>${escapeHtml(page.summary)}</p><p class="updated">${labels.updated}</p></section><article class="guide-content section-wrap"><section class="answer-block"><h2>${labels.answer}</h2><h3>${escapeHtml(page.heading)}</h3><p>${escapeHtml(page.answer ?? page.summary)}</p></section>${rowMarkup}${sectionMarkup}<section><h2>${labels.faq}</h2><div class="guide-faq">${page.questions.map(([question, answer]) => `<article><h3>${escapeHtml(question)}</h3><p>${escapeHtml(answer)}</p></article>`).join('')}</div></section>${relatedMarkup}</article><section class="final-cta section-wrap"><div><h2>${labels.cta}</h2><p>${labels.ctaBody}</p></div><a class="primary-cta" href="${prefix}/app">${labels.open} →</a></section></main></div>`
   const alternates = `<link rel="alternate" hreflang="en" href="${baseUrl}${englishPath}" />
     <link rel="alternate" hreflang="es" href="${baseUrl}${spanishPath}" />
+    <link rel="alternate" hreflang="pt-BR" href="${baseUrl}${portuguesePath}" />
     <link rel="alternate" hreflang="x-default" href="${baseUrl}${englishPath}" />`
   const html = source
     .replace('<html lang="en">', `<html lang="${language}">`)

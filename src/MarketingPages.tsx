@@ -1,8 +1,17 @@
 import type { ReactNode } from 'react'
 import { exampleProjects, type ExampleSlug } from './examples'
 import spanishContent from './spanish-content.json'
+import portugueseContent from './portuguese-content.json'
 
-export type Locale = 'en' | 'es'
+export type Locale = 'en' | 'es' | 'pt-BR'
+
+const localePrefixes: Record<Locale, string> = { en: '', es: '/es', 'pt-BR': '/pt-br' }
+
+const languages = [
+  { locale: 'en', name: 'English', code: 'EN' },
+  { locale: 'es', name: 'Español', code: 'ES' },
+  { locale: 'pt-BR', name: 'Português (Brasil)', code: 'PT' },
+] as const
 
 const englishSupportLinks = [
   ['/codepen-vs-jsfiddle-vs-myztic-playground', 'Choose a playground'],
@@ -26,58 +35,82 @@ const spanishSupportLinks = [
   ['/es/alternatives/jsfiddle', 'Alternativa a JSFiddle'],
 ] as const
 
+const portugueseSupportLinks = [
+  ['/pt-br/codepen-vs-jsfiddle-vs-myztic-playground', 'Escolher um playground'],
+  ['/pt-br/export-html-css-js-zip', 'Exportação ZIP'],
+  ['/pt-br/for-teachers', 'Para professores'],
+  ['/pt-br/html-css-js-playground-for-beginners', 'Para iniciantes'],
+  ['/pt-br/local-save-code-playground', 'Salvamento local'],
+  ['/pt-br/safe-javascript-playground', 'Segurança do JavaScript'],
+  ['/pt-br/alternatives/codepen', 'Alternativa ao CodePen'],
+  ['/pt-br/alternatives/jsfiddle', 'Alternativa ao JSFiddle'],
+] as const
+
 export function localizedPath(pathname: string, locale: Locale) {
   const normalized = pathname.replace(/\/$/, '') || '/'
-  if (locale === 'es') return normalized === '/' ? '/es' : `/es${normalized}`
-  if (normalized === '/es') return '/'
-  return normalized.startsWith('/es/') ? normalized.slice(3) : normalized
+  const englishPath = normalized === '/es' || normalized === '/pt-br'
+    ? '/'
+    : normalized.startsWith('/es/')
+      ? normalized.slice(3)
+      : normalized.startsWith('/pt-br/')
+        ? normalized.slice(6)
+        : normalized
+  const prefix = localePrefixes[locale]
+  return locale === 'en' ? englishPath : englishPath === '/' ? prefix : `${prefix}${englishPath}`
 }
 
-function equivalentLanguagePath(locale: Locale) {
-  const targetLocale = locale === 'es' ? 'en' : 'es'
+function equivalentLanguagePath(targetLocale: Locale) {
   return `${localizedPath(window.location.pathname, targetLocale)}${window.location.search}`
 }
 
 const languageNames: Record<Locale, string> = {
   en: 'English',
   es: 'Español',
+  'pt-BR': 'Português (Brasil)',
 }
 
 export function LanguageSwitcher({ locale }: { locale: Locale }) {
-  const englishHref = locale === 'en'
-    ? `${window.location.pathname}${window.location.search}`
-    : equivalentLanguagePath(locale)
-  const spanishHref = locale === 'es'
-    ? `${window.location.pathname}${window.location.search}`
-    : equivalentLanguagePath(locale)
-  const label = locale === 'es' ? 'Seleccionar idioma' : 'Select language'
-  return <nav className="language-menu" aria-label={locale === 'es' ? 'Idioma' : 'Language'}>
+  const labels: Record<Locale, { select: string; nav: string }> = {
+    en: { select: 'Select language', nav: 'Language' },
+    es: { select: 'Seleccionar idioma', nav: 'Idioma' },
+    'pt-BR': { select: 'Selecionar idioma', nav: 'Idioma' },
+  }
+  const label = labels[locale]
+  const currentCode = languages.find((language) => language.locale === locale)!.code
+  return <nav className="language-menu" aria-label={label.nav}>
     <details>
-      <summary className="language-trigger" aria-label={`${label}: ${languageNames[locale]}`}>
+      <summary className="language-trigger" aria-label={`${label.select}: ${languageNames[locale]}`}>
         <span className="language-globe" aria-hidden="true">◎</span>
         <span className="language-current">{languageNames[locale]}</span>
-        <span className="language-short" aria-hidden="true">{locale.toUpperCase()}</span>
+        <span className="language-short" aria-hidden="true">{currentCode}</span>
         <span className="language-chevron" aria-hidden="true">⌄</span>
       </summary>
       <div className="language-popover">
-        <p>{label}</p>
-        <a href={englishHref} lang="en" hrefLang="en" aria-label="English" aria-current={locale === 'en' ? 'page' : undefined}><span>English</span><small>EN</small>{locale === 'en' && <b aria-hidden="true">✓</b>}</a>
-        <a href={spanishHref} lang="es" hrefLang="es" aria-label="Español" aria-current={locale === 'es' ? 'page' : undefined}><span>Español</span><small>ES</small>{locale === 'es' && <b aria-hidden="true">✓</b>}</a>
+        <p>{label.select}</p>
+        {languages.map((language) => <a key={language.locale} href={equivalentLanguagePath(language.locale)} lang={language.locale} hrefLang={language.locale} aria-label={language.name} aria-current={locale === language.locale ? 'page' : undefined}><span>{language.name}</span><small>{language.code}</small>{locale === language.locale && <b aria-hidden="true">✓</b>}</a>)}
       </div>
     </details>
   </nav>
 }
 
 function Header({ locale = 'en' }: { locale?: Locale }) {
-  const isSpanish = locale === 'es'
-  const prefix = isSpanish ? '/es' : ''
-  return <header className="site-header"><nav className="site-nav" aria-label={isSpanish ? 'Navegación principal' : 'Primary navigation'}><a className="site-brand" href={isSpanish ? '/es' : '/'}><span className="site-brand-mark" aria-hidden="true">✦</span><span>Myztic <strong>Playground</strong></span></a><div className="site-links"><a href={`${prefix}/examples`}>{isSpanish ? 'Ejemplos' : 'Examples'}</a><a href={`${prefix}/for-teachers`}>{isSpanish ? 'Para docentes' : 'For teachers'}</a><a href={`${prefix}/codepen-vs-jsfiddle-vs-myztic-playground`}>{isSpanish ? 'Comparar' : 'Compare'}</a><LanguageSwitcher locale={locale} /><a className="nav-cta" href={`${prefix}/app`}>{isSpanish ? 'Abrir editor' : 'Open playground'} <span aria-hidden="true">→</span></a></div></nav></header>
+  const text = {
+    en: { nav: 'Primary navigation', examples: 'Examples', teachers: 'For teachers', compare: 'Compare', open: 'Open playground' },
+    es: { nav: 'Navegación principal', examples: 'Ejemplos', teachers: 'Para docentes', compare: 'Comparar', open: 'Abrir editor' },
+    'pt-BR': { nav: 'Navegação principal', examples: 'Exemplos', teachers: 'Para professores', compare: 'Comparar', open: 'Abrir playground' },
+  }[locale]
+  const prefix = localePrefixes[locale]
+  return <header className="site-header"><nav className="site-nav" aria-label={text.nav}><a className="site-brand" href={prefix || '/'}><span className="site-brand-mark" aria-hidden="true">✦</span><span>Myztic <strong>Playground</strong></span></a><div className="site-links"><a href={`${prefix}/examples`}>{text.examples}</a><a href={`${prefix}/for-teachers`}>{text.teachers}</a><a href={`${prefix}/codepen-vs-jsfiddle-vs-myztic-playground`}>{text.compare}</a><LanguageSwitcher locale={locale} /><a className="nav-cta" href={`${prefix}/app`}>{text.open} <span aria-hidden="true">→</span></a></div></nav></header>
 }
 
 function Footer({ locale = 'en' }: { locale?: Locale }) {
-  const isSpanish = locale === 'es'
-  const prefix = isSpanish ? '/es' : ''
-  return <footer className="site-footer"><div className="section-wrap footer-inner"><div><a className="site-brand" href={isSpanish ? '/es' : '/'}><span className="site-brand-mark">✦</span><span>Myztic <strong>Playground</strong></span></a><p>{isSpanish ? 'Un espacio gratuito y local para crear en la web abierta.' : 'A free, local-first place to build for the open web.'}</p></div><nav aria-label={isSpanish ? 'Navegación del pie' : 'Footer navigation'}><a href={`${prefix}/app`}>{isSpanish ? 'Editor' : 'Playground'}</a><a href={`${prefix}/examples`}>{isSpanish ? 'Ejemplos' : 'Examples'}</a><a href={`${prefix}/codepen-vs-jsfiddle-vs-myztic-playground`}>{isSpanish ? 'Comparar' : 'Compare'}</a><a href={`${prefix}/for-teachers`}>{isSpanish ? 'Docentes' : 'Teachers'}</a><a href={`${prefix}/privacy`}>{isSpanish ? 'Privacidad' : 'Privacy'}</a><a href={`${prefix}/safe-javascript-playground`}>{isSpanish ? 'Seguridad' : 'Safety'}</a><a href={`${prefix}/changelog`}>{isSpanish ? 'Cambios' : 'Changelog'}</a><a href="https://github.com/myzticdev/myztic-playground">GitHub ↗</a></nav></div><div className="section-wrap footer-bottom"><span>© 2026 Myzticdev</span><span>{isSpanish ? 'Gratis. Sin registro. Creado para la web abierta.' : 'Free. No signup. Built for the open web.'}</span></div></footer>
+  const text = {
+    en: { nav: 'Footer navigation', description: 'A free, local-first place to build for the open web.', playground: 'Playground', examples: 'Examples', compare: 'Compare', teachers: 'Teachers', privacy: 'Privacy', safety: 'Safety', changelog: 'Changelog', note: 'Free. No signup. Built for the open web.' },
+    es: { nav: 'Navegación del pie', description: 'Un espacio gratuito y local para crear en la web abierta.', playground: 'Editor', examples: 'Ejemplos', compare: 'Comparar', teachers: 'Docentes', privacy: 'Privacidad', safety: 'Seguridad', changelog: 'Cambios', note: 'Gratis. Sin registro. Creado para la web abierta.' },
+    'pt-BR': { nav: 'Navegação do rodapé', description: 'Um espaço gratuito e local para criar para a web aberta.', playground: 'Playground', examples: 'Exemplos', compare: 'Comparar', teachers: 'Professores', privacy: 'Privacidade', safety: 'Segurança', changelog: 'Novidades', note: 'Grátis. Sem cadastro. Criado para a web aberta.' },
+  }[locale]
+  const prefix = localePrefixes[locale]
+  return <footer className="site-footer"><div className="section-wrap footer-inner"><div><a className="site-brand" href={prefix || '/'}><span className="site-brand-mark">✦</span><span>Myztic <strong>Playground</strong></span></a><p>{text.description}</p></div><nav aria-label={text.nav}><a href={`${prefix}/app`}>{text.playground}</a><a href={`${prefix}/examples`}>{text.examples}</a><a href={`${prefix}/codepen-vs-jsfiddle-vs-myztic-playground`}>{text.compare}</a><a href={`${prefix}/for-teachers`}>{text.teachers}</a><a href={`${prefix}/privacy`}>{text.privacy}</a><a href={`${prefix}/safe-javascript-playground`}>{text.safety}</a><a href={`${prefix}/changelog`}>{text.changelog}</a><a href="https://github.com/myzticdev/myztic-playground">GitHub ↗</a></nav></div><div className="section-wrap footer-bottom"><span>© 2026 Myzticdev</span><span>{text.note}</span></div></footer>
 }
 
 function PageShell({ children, locale = 'en' }: { children: ReactNode; locale?: Locale }) {
@@ -118,12 +151,28 @@ export function SpanishExamplesPage() {
   })}</div></section><section className="final-cta section-wrap"><div><p className="eyebrow"><span></span> Empieza desde cero</p><h2>¿Prefieres un lienzo vacío?</h2><p>El editor está listo cuando tú lo estés.</p></div><a className="primary-cta" href="/es/app">Abrir editor vacío <span>→</span></a></section></PageShell>
 }
 
+const portugueseExampleText: Record<ExampleSlug, { category: string; title: string; description: string }> = {
+  'gradient-card': { category: 'CSS criativo', title: 'Cartão com gradiente', description: 'Camadas, gradientes e uma animação sutil feita com CSS.' },
+  counter: { category: 'JavaScript', title: 'Contador de cliques', description: 'Eventos, estado e atualização do DOM em poucas linhas.' },
+  'profile-card': { category: 'HTML e CSS', title: 'Cartão de perfil', description: 'Uma composição responsiva com hierarquia visual clara.' },
+  'orbit-loader': { category: 'Animação CSS', title: 'Indicador orbital', description: 'Movimento circular criado sem bibliotecas externas.' },
+  'signup-form': { category: 'Formulários', title: 'Formulário de cadastro', description: 'Campos acessíveis e estados visuais para uma chamada à ação.' },
+  'theme-switcher': { category: 'DOM e CSS', title: 'Seletor de tema', description: 'Alterne entre os modos claro e escuro com variáveis CSS.' },
+}
+
+export function PortugueseExamplesPage() {
+  return <PageShell locale="pt-BR"><section className="page-hero section-wrap"><p className="eyebrow"><span></span> Projetos de exemplo</p><h1>Comece com algo pequeno.<br /><em>Deixe do seu jeito.</em></h1><p>Abra uma ideia frontend, entenda como ela funciona e transforme-a no Myztic Playground.</p></section><section className="examples-page section-wrap"><div className="example-grid full-grid">{exampleProjects.map((example) => {
+    const translated = portugueseExampleText[example.slug]
+    return <article className={`example-card ${exampleClassNames[example.slug]}`} key={example.slug}><div className="example-art"><ExampleArtwork slug={example.slug} /></div><div><p><b>{translated.category}</b> • {example.lines} linhas</p><h2>{translated.title}</h2><p className="example-description">{translated.description}</p><a href={`/pt-br/app?example=${example.slug}`}>Abrir código no playground <span>→</span></a></div></article>
+  })}</div></section><section className="final-cta section-wrap"><div><p className="eyebrow"><span></span> Comece do zero</p><h2>Prefere uma tela em branco?</h2><p>O playground está pronto quando você estiver.</p></div><a className="primary-cta" href="/pt-br/app">Abrir playground vazio <span>→</span></a></section></PageShell>
+}
+
 type TableRow = { label: string; value: ReactNode }
 type Faq = { question: string; answer: ReactNode }
 type DetailSection = { heading: string; paragraphs?: ReactNode[]; items?: string[] }
 type DecisionRow = { need: string; fit: string; reason: string }
 
-export type SpanishPageData = {
+export type LocalizedPageData = {
   title: string
   description: string
   eyebrow: string
@@ -136,7 +185,8 @@ export type SpanishPageData = {
   schemaType: 'Article' | 'TechArticle' | 'WebPage' | 'WebApplication'
 }
 
-export const spanishPages = spanishContent as unknown as Record<string, SpanishPageData>
+export const spanishPages = spanishContent as unknown as Record<string, LocalizedPageData>
+export const portuguesePages = portugueseContent as unknown as Record<string, LocalizedPageData>
 
 type GuidePageProps = {
   locale?: Locale
@@ -156,21 +206,26 @@ type GuidePageProps = {
 }
 
 function GuidePage({ locale = 'en', eyebrow, title, summary, heading, paragraphs, rows, listTitle, items, detailSections, decisionTitle, decisionRows, faqs, updated }: GuidePageProps) {
-  const isSpanish = locale === 'es'
-  const supportLinks = isSpanish ? spanishSupportLinks : englishSupportLinks
-  const displayDate = updated ?? (isSpanish ? '23 de julio de 2026' : 'July 23, 2026')
+  const text = {
+    en: { updated: 'Last updated', date: 'July 23, 2026', answer: 'Quick answer', glance: 'At a glance', summary: 'Feature summary', need: 'Need', fit: 'Best fit', why: 'Why', faq: 'Frequently asked questions', explore: 'Keep exploring', start: 'Start immediately', cta: 'Turn an idea into a working page.', ctaBody: 'No setup, account, or payment details required.', open: 'Open playground' },
+    es: { updated: 'Última actualización', date: '23 de julio de 2026', answer: 'Respuesta rápida', glance: 'Resumen', summary: 'Resumen de características', need: 'Necesidad', fit: 'Mejor opción', why: 'Motivo', faq: 'Preguntas frecuentes', explore: 'Seguir explorando', start: 'Empieza ahora', cta: 'Convierte una idea en una página que funciona.', ctaBody: 'Sin configuración, cuenta ni datos de pago.', open: 'Abrir editor' },
+    'pt-BR': { updated: 'Última atualização', date: '23 de julho de 2026', answer: 'Resposta rápida', glance: 'Resumo', summary: 'Resumo de recursos', need: 'Necessidade', fit: 'Melhor opção', why: 'Motivo', faq: 'Perguntas frequentes', explore: 'Continue explorando', start: 'Comece agora', cta: 'Transforme uma ideia em uma página funcional.', ctaBody: 'Sem configuração, conta ou dados de pagamento.', open: 'Abrir playground' },
+  }[locale]
+  const supportLinks = locale === 'es' ? spanishSupportLinks : locale === 'pt-BR' ? portugueseSupportLinks : englishSupportLinks
+  const displayDate = updated ?? text.date
+  const prefix = localePrefixes[locale]
   return <PageShell locale={locale}>
-    <section className="page-hero guide-hero section-wrap"><p className="eyebrow"><span></span> {eyebrow}</p><h1>{title}</h1><p>{summary}</p><p className="updated">{isSpanish ? 'Última actualización' : 'Last updated'} {displayDate}</p></section>
+    <section className="page-hero guide-hero section-wrap"><p className="eyebrow"><span></span> {eyebrow}</p><h1>{title}</h1><p>{summary}</p><p className="updated">{text.updated} {displayDate}</p></section>
     <article className="guide-content section-wrap">
-      <section className="answer-block"><h2>{isSpanish ? 'Respuesta rápida' : 'Quick answer'}</h2><h3>{heading}</h3>{paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}</section>
-      {rows && <section><h2>{isSpanish ? 'Resumen' : 'At a glance'}</h2><div className="feature-table" role="table" aria-label={isSpanish ? 'Resumen de características' : 'Feature summary'}>{rows.map((row) => <div className="feature-row" role="row" key={row.label}><strong role="rowheader">{row.label}</strong><span role="cell">{row.value}</span></div>)}</div></section>}
-      {decisionRows && <section><h2>{decisionTitle}</h2><div className="decision-table" role="table" aria-label={decisionTitle}><div className="decision-row decision-head" role="row"><strong role="columnheader">{isSpanish ? 'Necesidad' : 'Need'}</strong><strong role="columnheader">{isSpanish ? 'Mejor opción' : 'Best fit'}</strong><strong role="columnheader">{isSpanish ? 'Motivo' : 'Why'}</strong></div>{decisionRows.map((row) => <div className="decision-row" role="row" key={row.need}><strong role="rowheader">{row.need}</strong><span role="cell">{row.fit}</span><span role="cell">{row.reason}</span></div>)}</div></section>}
+      <section className="answer-block"><h2>{text.answer}</h2><h3>{heading}</h3>{paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}</section>
+      {rows && <section><h2>{text.glance}</h2><div className="feature-table" role="table" aria-label={text.summary}>{rows.map((row) => <div className="feature-row" role="row" key={row.label}><strong role="rowheader">{row.label}</strong><span role="cell">{row.value}</span></div>)}</div></section>}
+      {decisionRows && <section><h2>{decisionTitle}</h2><div className="decision-table" role="table" aria-label={decisionTitle}><div className="decision-row decision-head" role="row"><strong role="columnheader">{text.need}</strong><strong role="columnheader">{text.fit}</strong><strong role="columnheader">{text.why}</strong></div>{decisionRows.map((row) => <div className="decision-row" role="row" key={row.need}><strong role="rowheader">{row.need}</strong><span role="cell">{row.fit}</span><span role="cell">{row.reason}</span></div>)}</div></section>}
       {items && <section><h2>{listTitle}</h2><ul className="guide-list">{items.map((item) => <li key={item}>{item}</li>)}</ul></section>}
       {detailSections?.map((section) => <section key={section.heading}><h2>{section.heading}</h2>{section.paragraphs?.map((paragraph, index) => <p className="guide-paragraph" key={index}>{paragraph}</p>)}{section.items && <ul className="guide-list">{section.items.map((item) => <li key={item}>{item}</li>)}</ul>}</section>)}
-      <section><h2>{isSpanish ? 'Preguntas frecuentes' : 'Frequently asked questions'}</h2><div className="guide-faq">{faqs.map((faq) => <article key={faq.question}><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}</div></section>
-      <aside className="related-links"><h2>{isSpanish ? 'Seguir explorando' : 'Keep exploring'}</h2><div>{supportLinks.map(([href, label]) => <a href={href} key={href}>{label} <span>→</span></a>)}</div></aside>
+      <section><h2>{text.faq}</h2><div className="guide-faq">{faqs.map((faq) => <article key={faq.question}><h3>{faq.question}</h3><p>{faq.answer}</p></article>)}</div></section>
+      <aside className="related-links"><h2>{text.explore}</h2><div>{supportLinks.map(([href, label]) => <a href={href} key={href}>{label} <span>→</span></a>)}</div></aside>
     </article>
-    <section className="final-cta section-wrap"><div><p className="eyebrow"><span></span> {isSpanish ? 'Empieza ahora' : 'Start immediately'}</p><h2>{isSpanish ? 'Convierte una idea en una página que funciona.' : 'Turn an idea into a working page.'}</h2><p>{isSpanish ? 'Sin configuración, cuenta ni datos de pago.' : 'No setup, account, or payment details required.'}</p></div><a className="primary-cta" href={isSpanish ? '/es/app' : '/app'}>{isSpanish ? 'Abrir editor' : 'Open playground'} <span>→</span></a></section>
+    <section className="final-cta section-wrap"><div><p className="eyebrow"><span></span> {text.start}</p><h2>{text.cta}</h2><p>{text.ctaBody}</p></div><a className="primary-cta" href={`${prefix}/app`}>{text.open} <span>→</span></a></section>
   </PageShell>
 }
 
@@ -178,6 +233,21 @@ export function SpanishGuidePage({ routePath }: { routePath: string }) {
   const page = spanishPages[routePath]
   return <GuidePage
     locale="es"
+    eyebrow={page.eyebrow}
+    title={page.heading}
+    summary={page.summary}
+    heading={page.heading}
+    paragraphs={[page.answer]}
+    rows={page.rows.map(([label, value]) => ({ label, value }))}
+    detailSections={page.sections.map(([heading, paragraph]) => ({ heading, paragraphs: [paragraph] }))}
+    faqs={page.faqs.map(([question, answer]) => ({ question, answer }))}
+  />
+}
+
+export function PortugueseGuidePage({ routePath }: { routePath: string }) {
+  const page = portuguesePages[routePath]
+  return <GuidePage
+    locale="pt-BR"
     eyebrow={page.eyebrow}
     title={page.heading}
     summary={page.summary}

@@ -1,7 +1,7 @@
 import { writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { englishRoutes, spanishPath } from './site-routes.mjs'
+import { englishRoutes, portuguesePath, spanishPath } from './site-routes.mjs'
 
 const projectRoot = join(dirname(fileURLToPath(import.meta.url)), '..')
 const baseUrl = 'https://playground.myztic.dev'
@@ -10,21 +10,24 @@ const lastModified = '2026-07-23'
 function urlEntry(route, locale) {
   const english = route.path
   const spanish = spanishPath(route.path)
-  const localizedPath = locale === 'es' ? spanish : english
+  const portuguese = portuguesePath(route.path)
+  const localizedPath = locale === 'es' ? spanish : locale === 'pt-BR' ? portuguese : english
   return `  <url>
     <loc>${baseUrl}${localizedPath}</loc>
     <xhtml:link rel="alternate" hreflang="en" href="${baseUrl}${english}" />
     <xhtml:link rel="alternate" hreflang="es" href="${baseUrl}${spanish}" />
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="${baseUrl}${portuguese}" />
     <xhtml:link rel="alternate" hreflang="x-default" href="${baseUrl}${english}" />
     <lastmod>${lastModified}</lastmod>
     <changefreq>${route.changefreq}</changefreq>
-    <priority>${locale === 'es' && route.priority === '1.0' ? '0.9' : route.priority}</priority>
+    <priority>${locale !== 'en' && route.priority === '1.0' ? '0.9' : route.priority}</priority>
   </url>`
 }
 
 const entries = englishRoutes.flatMap((route) => [
   urlEntry(route, 'en'),
   urlEntry(route, 'es'),
+  urlEntry(route, 'pt-BR'),
 ])
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

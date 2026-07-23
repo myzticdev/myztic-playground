@@ -5,8 +5,9 @@ import {
   AboutPage, BeginnerPlaygroundPage, BestFreePlaygroundPage, BrowserFrontendPage,
   ChangelogPage, CodePenPage, ComparisonHubPage, DownloadProjectPage, ExamplesPage,
   ExportPage, JsFiddlePage, LearnPage, LiveJavascriptPage, LocalSavePage, PrivacyPage,
-  SafeJavascriptPage, SecurityPage, SpanishExamplesPage, SpanishGuidePage, TeachersPage,
-  localizedPath, spanishPages, type Locale,
+  PortugueseExamplesPage, PortugueseGuidePage, SafeJavascriptPage, SecurityPage,
+  SpanishExamplesPage, SpanishGuidePage, TeachersPage, localizedPath, portuguesePages,
+  spanishPages, type Locale,
 } from './MarketingPages'
 import './styles.css'
 import { initializeAnalytics } from './analytics'
@@ -63,6 +64,23 @@ Object.entries(spanishPages).forEach(([routePath, page]) => {
   }
 })
 
+const PortugueseAppPage = () => <App locale="pt-BR" />
+
+Object.entries(portuguesePages).forEach(([routePath, page]) => {
+  const PortugueseRoutePage = routePath === '/pt-br/app'
+    ? PortugueseAppPage
+    : routePath === '/pt-br/examples'
+      ? PortugueseExamplesPage
+      : () => <PortugueseGuidePage routePath={routePath} />
+  routes[routePath] = {
+    Page: PortugueseRoutePage,
+    title: page.title,
+    description: page.description,
+    schemaType: page.schemaType,
+    locale: 'pt-BR',
+  }
+})
+
 function setAlternateLink(hreflang: string, href: string) {
   let link = document.querySelector<HTMLLinkElement>(`link[rel="alternate"][hreflang="${hreflang}"]`)
   if (!link) {
@@ -80,6 +98,7 @@ function applyRouteMetadata(routePath: string, route: Route) {
   const canonicalUrl = `${baseUrl}${routePath}`
   const englishPath = localizedPath(routePath, 'en')
   const spanishPath = localizedPath(englishPath, 'es')
+  const portuguesePath = localizedPath(englishPath, 'pt-BR')
   const setMeta = (selector: string, attribute: string, value: string) => {
     document.querySelector(selector)?.setAttribute(attribute, value)
   }
@@ -92,6 +111,7 @@ function applyRouteMetadata(routePath: string, route: Route) {
   setMeta('meta[name="twitter:description"]', 'content', route.description)
   setAlternateLink('en', `${baseUrl}${englishPath}`)
   setAlternateLink('es', `${baseUrl}${spanishPath}`)
+  setAlternateLink('pt-BR', `${baseUrl}${portuguesePath}`)
   setAlternateLink('x-default', `${baseUrl}${englishPath}`)
 }
 
@@ -103,11 +123,13 @@ function applyRouteSchema(routePath: string, route: Route) {
     acceptedAnswer: { '@type': 'Answer', text: item.querySelector('p')?.textContent?.trim() ?? '' },
   })).filter((question) => question.name && question.acceptedAnswer.text)
   const locale = route.locale ?? 'en'
-  const language = locale === 'es' ? 'es' : 'en'
-  const rootPath = locale === 'es' ? '/es' : '/'
+  const language = locale
+  const rootPath = locale === 'es' ? '/es' : locale === 'pt-BR' ? '/pt-br' : '/'
   const comparisonPath = locale === 'es'
     ? '/es/codepen-vs-jsfiddle-vs-myztic-playground'
-    : '/codepen-vs-jsfiddle-vs-myztic-playground'
+    : locale === 'pt-BR'
+      ? '/pt-br/codepen-vs-jsfiddle-vs-myztic-playground'
+      : '/codepen-vs-jsfiddle-vs-myztic-playground'
   const graph: Record<string, unknown>[] = [{
     '@type': route.schemaType ?? 'WebPage', name: route.title, url: canonicalUrl,
     description: route.description, dateModified: '2026-07-23', inLanguage: language,
@@ -116,7 +138,7 @@ function applyRouteSchema(routePath: string, route: Route) {
   if (routePath.includes('/alternatives/') || routePath.includes('-vs-')) graph.push({
     '@type': 'BreadcrumbList', itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Myztic Playground', item: `${baseUrl}${rootPath}` },
-      { '@type': 'ListItem', position: 2, name: locale === 'es' ? 'Comparativas' : 'Comparisons', item: `${baseUrl}${comparisonPath}` },
+      { '@type': 'ListItem', position: 2, name: locale === 'es' ? 'Comparativas' : locale === 'pt-BR' ? 'Comparações' : 'Comparisons', item: `${baseUrl}${comparisonPath}` },
       { '@type': 'ListItem', position: 3, name: route.title, item: canonicalUrl },
     ],
   })
