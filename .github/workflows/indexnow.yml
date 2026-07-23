@@ -1,0 +1,45 @@
+name: Submit URLs to IndexNow
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: Space-separated changed URLs or paths. Leave blank to submit the sitemap.
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow-production
+  cancel-in-progress: true
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Wait for Dokploy deployment
+        if: github.event_name == 'push'
+        run: sleep 300
+      - name: Notify IndexNow
+        env:
+          INDEXNOW_URLS: ${{ github.event.inputs.urls || '' }}
+        run: |
+          for attempt in 1 2 3; do
+            if node scripts/submit-indexnow.mjs; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then
+              echo "IndexNow submission attempt $attempt failed; retrying in 60 seconds."
+              sleep 60
+            fi
+          done
+          exit 1

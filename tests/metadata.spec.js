@@ -36,9 +36,17 @@ test('serves crawlable homepage content and discovery files', async ({ page, req
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Free HTML, CSS, and JavaScript Playground')
   await expect(page.getByRole('link', { name: /Start coding for free/ }).first()).toHaveAttribute('href', '/app')
 
-  const [robots, sitemap] = await Promise.all([request.get('/robots.txt'), request.get('/sitemap.xml')])
+  const [robots, sitemap, llms, indexNowKey] = await Promise.all([
+    request.get('/robots.txt'),
+    request.get('/sitemap.xml'),
+    request.get('/llms.txt'),
+    request.get('/9f7d9b5a34954b3f95263711726516fd.txt'),
+  ])
   expect(await robots.text()).toContain('Sitemap: https://playground.myztic.dev/sitemap.xml')
   expect(await sitemap.text()).toContain('https://playground.myztic.dev/security')
+  expect(await llms.text()).toContain('# Myztic Playground')
+  expect(await llms.text()).toContain('## Policies and updates')
+  expect((await indexNowKey.text()).trim()).toBe('9f7d9b5a34954b3f95263711726516fd')
 })
 
 test('exposes the requested supporting routes', async ({ page }) => {
