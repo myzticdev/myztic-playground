@@ -12,6 +12,13 @@ export default defineConfig({
     ...baseConfig.use,
     baseURL: 'http://127.0.0.1:8080',
   },
-  // The production suite expects `docker compose up --build -d` to be running.
-  webServer: undefined,
+  // Keep Docker Compose attached to the Playwright lifecycle. This prevents
+  // the production tests from racing a detached container between workflow
+  // steps and makes /healthz the single readiness signal.
+  webServer: {
+    command: 'docker compose up --build',
+    url: 'http://127.0.0.1:8080/healthz',
+    reuseExistingServer: !process.env.CI,
+    timeout: 180_000,
+  },
 })
