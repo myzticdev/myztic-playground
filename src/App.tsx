@@ -218,7 +218,7 @@ export default function App({ locale = 'en' }: { locale?: Locale }) {
           <span>Myztic <strong>Playground</strong></span>
         </a>
         <div className="actions">
-          <LanguageSwitcher locale={locale} compact />
+          <LanguageSwitcher locale={locale} />
           {GITHUB_REPOSITORY_URL ? (
             <a
               className="button button-github"

@@ -38,24 +38,40 @@ function equivalentLanguagePath(locale: Locale) {
   return `${localizedPath(window.location.pathname, targetLocale)}${window.location.search}`
 }
 
-export function LanguageSwitcher({ locale, compact = false }: { locale: Locale; compact?: boolean }) {
+const languageNames: Record<Locale, string> = {
+  en: 'English',
+  es: 'Español',
+}
+
+export function LanguageSwitcher({ locale }: { locale: Locale }) {
   const englishHref = locale === 'en'
     ? `${window.location.pathname}${window.location.search}`
     : equivalentLanguagePath(locale)
   const spanishHref = locale === 'es'
     ? `${window.location.pathname}${window.location.search}`
     : equivalentLanguagePath(locale)
-  return <nav className={`language-switcher${compact ? ' language-switcher-compact' : ''}`} aria-label={locale === 'es' ? 'Idioma' : 'Language'}>
-    <a href={englishHref} lang="en" hrefLang="en" aria-current={locale === 'en' ? 'page' : undefined}>EN</a>
-    <span aria-hidden="true">/</span>
-    <a href={spanishHref} lang="es" hrefLang="es" aria-current={locale === 'es' ? 'page' : undefined}>ES</a>
+  const label = locale === 'es' ? 'Seleccionar idioma' : 'Select language'
+  return <nav className="language-menu" aria-label={locale === 'es' ? 'Idioma' : 'Language'}>
+    <details>
+      <summary className="language-trigger" aria-label={`${label}: ${languageNames[locale]}`}>
+        <span className="language-globe" aria-hidden="true">◎</span>
+        <span className="language-current">{languageNames[locale]}</span>
+        <span className="language-short" aria-hidden="true">{locale.toUpperCase()}</span>
+        <span className="language-chevron" aria-hidden="true">⌄</span>
+      </summary>
+      <div className="language-popover">
+        <p>{label}</p>
+        <a href={englishHref} lang="en" hrefLang="en" aria-label="English" aria-current={locale === 'en' ? 'page' : undefined}><span>English</span><small>EN</small>{locale === 'en' && <b aria-hidden="true">✓</b>}</a>
+        <a href={spanishHref} lang="es" hrefLang="es" aria-label="Español" aria-current={locale === 'es' ? 'page' : undefined}><span>Español</span><small>ES</small>{locale === 'es' && <b aria-hidden="true">✓</b>}</a>
+      </div>
+    </details>
   </nav>
 }
 
 function Header({ locale = 'en' }: { locale?: Locale }) {
   const isSpanish = locale === 'es'
   const prefix = isSpanish ? '/es' : ''
-  return <header className="site-header"><nav className="site-nav" aria-label={isSpanish ? 'Navegación principal' : 'Primary navigation'}><a className="site-brand" href={isSpanish ? '/es' : '/'}><span className="site-brand-mark" aria-hidden="true">✦</span><span>Myztic <strong>Playground</strong></span></a><div className="site-links"><a href={`${prefix}/examples`}>{isSpanish ? 'Ejemplos' : 'Examples'}</a><a href={`${prefix}/for-teachers`}>{isSpanish ? 'Para docentes' : 'For teachers'}</a><a href={`${prefix}/codepen-vs-jsfiddle-vs-myztic-playground`}>{isSpanish ? 'Comparar' : 'Compare'}</a><LanguageSwitcher locale={locale} compact /><a className="nav-cta" href={`${prefix}/app`}>{isSpanish ? 'Abrir editor' : 'Open playground'} <span aria-hidden="true">→</span></a></div></nav></header>
+  return <header className="site-header"><nav className="site-nav" aria-label={isSpanish ? 'Navegación principal' : 'Primary navigation'}><a className="site-brand" href={isSpanish ? '/es' : '/'}><span className="site-brand-mark" aria-hidden="true">✦</span><span>Myztic <strong>Playground</strong></span></a><div className="site-links"><a href={`${prefix}/examples`}>{isSpanish ? 'Ejemplos' : 'Examples'}</a><a href={`${prefix}/for-teachers`}>{isSpanish ? 'Para docentes' : 'For teachers'}</a><a href={`${prefix}/codepen-vs-jsfiddle-vs-myztic-playground`}>{isSpanish ? 'Comparar' : 'Compare'}</a><LanguageSwitcher locale={locale} /><a className="nav-cta" href={`${prefix}/app`}>{isSpanish ? 'Abrir editor' : 'Open playground'} <span aria-hidden="true">→</span></a></div></nav></header>
 }
 
 function Footer({ locale = 'en' }: { locale?: Locale }) {
