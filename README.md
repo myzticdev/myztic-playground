@@ -1,6 +1,8 @@
 # Myztic Playground
 
-Myztic Playground is a lightweight, self-hosted HTML/CSS/JavaScript scratchpad. It provides three local code editors, an explicit **Run** action, a live preview, and a browser-only ZIP export without accounts, a database, API routes, or any server-side code execution. Work is automatically stored in the visitor's browser using `localStorage`. ZIP exports contain a wired-together `index.html`, `styles.css`, and `script.js`.
+Myztic Playground is a free, no-signup HTML/CSS/JavaScript playground with live preview, local browser save, and ZIP export. It is built for beginners, teachers, prototypers, and developers who need a fast frontend testing space without accounts or setup.
+
+The lightweight, self-hosted app provides three local code editors, an explicit **Run** action, and browser-only ZIP export without a database, API routes, or any server-side code execution. Work is automatically stored in the visitor's browser using `localStorage`. ZIP exports contain a wired-together `index.html`, `styles.css`, and `script.js`.
 
 ## Why this design is safer
 

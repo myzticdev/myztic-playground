@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#09090d" />
     <meta name="referrer" content="no-referrer" />
-    <meta name="description" content="Test HTML, CSS, and JavaScript online with Myztic Playground, a fast browser-based frontend code playground with live preview." />
+    <meta name="description" content="Test HTML, CSS, and JavaScript in your browser with live preview. Free, no signup, local browser save, and ZIP export." />
     <link rel="canonical" href="https://playground.myztic.dev/" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Myztic Playground" />
-    <meta property="og:title" content="Myztic Playground — Free HTML, CSS &amp; JavaScript Tester" />
-    <meta property="og:description" content="Test HTML, CSS, and JavaScript online in a fast frontend code playground with a live, isolated preview." />
+    <meta property="og:title" content="Myztic Playground — Free HTML, CSS &amp; JavaScript Playground" />
+    <meta property="og:description" content="A free, no-signup HTML, CSS and JavaScript playground with live preview, local browser save, and ZIP export." />
     <meta property="og:url" content="https://playground.myztic.dev/" />
     <meta property="og:image" content="https://playground.myztic.dev/social-preview.png" />
     <meta property="og:image:type" content="image/png" />
@@ -20,27 +20,43 @@
     <meta property="og:image:height" content="909" />
     <meta property="og:image:alt" content="Myztic Playground code editor and live preview." />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Myztic Playground — Free HTML, CSS &amp; JavaScript Tester" />
-    <meta name="twitter:description" content="Test frontend code online with a fast browser-based editor and isolated live preview." />
+    <meta name="twitter:title" content="Myztic Playground — Free HTML, CSS &amp; JavaScript Playground" />
+    <meta name="twitter:description" content="A free, no-signup frontend playground with live preview, local save, and ZIP export." />
     <meta name="twitter:image" content="https://playground.myztic.dev/social-preview.png" />
     <meta name="twitter:image:alt" content="Myztic Playground code editor and live preview." />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "Myztic Playground",
-        "url": "https://playground.myztic.dev/",
-        "applicationCategory": "DeveloperApplication",
-        "operatingSystem": "Any",
-        "browserRequirements": "Requires a modern web browser with JavaScript enabled",
-        "description": "Test HTML, CSS, and JavaScript online with a fast browser-based frontend code playground and live preview.",
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-        "creator": { "@type": "Organization", "name": "Myzticdev", "url": "https://myztic.dev" }
+        "@graph": [
+          {
+            "@type": "WebApplication",
+            "name": "Myztic Playground",
+            "url": "https://playground.myztic.dev/",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Any modern web browser",
+            "browserRequirements": "Requires a modern web browser with JavaScript enabled",
+            "description": "A free, no-signup HTML, CSS, and JavaScript playground with live preview, local browser save, and ZIP export.",
+            "isAccessibleForFree": true,
+            "featureList": ["HTML editor", "CSS editor", "JavaScript editor", "Live preview", "Local browser save", "ZIP export", "No signup required"],
+            "audience": { "@type": "Audience", "audienceType": "Learners, teachers, prototypers, and frontend developers" },
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+            "creator": { "@type": "Organization", "name": "Myzticdev", "url": "https://myztic.dev" }
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              { "@type": "Question", "name": "Is Myztic Playground free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Myztic Playground is free to use and does not require an account." } },
+              { "@type": "Question", "name": "Does Myztic Playground save my code?", "acceptedAnswer": { "@type": "Answer", "text": "It saves your latest project locally in your browser so you can return on the same device and browser profile." } },
+              { "@type": "Question", "name": "Can I export my code?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. You can export the project as a ZIP containing HTML, CSS, and JavaScript files." } },
+              { "@type": "Question", "name": "Is Myztic Playground a CodePen or JSFiddle alternative?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, for quick no-signup frontend experiments with local save and ZIP export. CodePen and JSFiddle offer broader publishing, community, and library features." } }
+            ]
+          }
+        ]
       }
     </script>
     <!-- Vite replaces this marker with a provider-specific CSP at build time. -->
     <meta http-equiv="Content-Security-Policy" content="__MYZTIC_MAIN_CSP__" />
-    <title>Myztic Playground — Free HTML, CSS &amp; JavaScript Tester</title>
+    <title>Myztic Playground — Free HTML, CSS &amp; JavaScript Playground with Live Preview</title>
   </head>
   <body>
     <div id="root">
@@ -48,7 +64,7 @@
         <header class="site-header">
           <nav class="site-nav" aria-label="Primary navigation">
             <a class="site-brand" href="/" aria-label="Myztic Playground home"><span class="site-brand-mark" aria-hidden="true">✦</span><span>Myztic <strong>Playground</strong></span></a>
-            <div class="site-links"><a href="/examples">Examples</a><a href="/security">Security</a><a class="nav-cta" href="/app">Open playground <span aria-hidden="true">→</span></a></div>
+            <div class="site-links"><a href="/examples">Examples</a><a href="/for-teachers">For teachers</a><a href="/security">Security</a><a class="nav-cta" href="/app">Open playground <span aria-hidden="true">→</span></a></div>
           </nav>
         </header>
 
@@ -123,13 +139,13 @@
 
           <section class="faq-section section-wrap">
             <div class="section-heading"><p class="eyebrow"><span></span> Common questions</p><h2>Good to know.</h2></div>
-            <div class="faq-grid"><article><h3>Is Myztic Playground really free?</h3><p>Yes. It is free to use, with no account, trial, or payment details required.</p></article><article><h3>Where is my code saved?</h3><p>Your current project is saved in your browser’s local storage. It is not uploaded to a Myztic server.</p></article><article><h3>Can I use libraries or external APIs?</h3><p>No. Network access is blocked inside the preview to keep the sandbox isolated and predictable.</p></article><article><h3>Is it safe to run JavaScript?</h3><p>User code runs in a restricted iframe without same-origin access, forms, popups, downloads, or top-level navigation. <a href="/security">Read the sandbox details.</a></p></article></div>
+            <div class="faq-grid"><article><h3>Is Myztic Playground free?</h3><p>Yes. It is free to use, with no account, trial, or payment details required.</p></article><article><h3>Do I need to sign up?</h3><p>No. Open the playground and start writing HTML, CSS, and JavaScript immediately.</p></article><article><h3>Where is my code saved?</h3><p>Your latest project is saved in your browser’s local storage. It is not uploaded to a Myztic code-execution server.</p></article><article><h3>Can I export my code?</h3><p>Yes. Download a ZIP containing index.html, styles.css, and script.js.</p></article><article><h3>Who is it for?</h3><p>Beginners, students, teachers, prototypers, and developers who need a quick frontend testing space.</p></article><article><h3>Is it a CodePen or JSFiddle alternative?</h3><p>Yes, for quick no-signup tests with local save and ZIP export. <a href="/alternatives/codepen">Compare CodePen</a> or <a href="/alternatives/jsfiddle">compare JSFiddle</a>.</p></article><article><h3>Can teachers use it in class?</h3><p>Yes. Students can begin without accounts or installations. <a href="/for-teachers">See classroom uses.</a></p></article><article><h3>Is it safe to run JavaScript?</h3><p>User code runs in a restricted iframe without same-origin access, forms, popups, downloads, or top-level navigation. <a href="/security">Read the sandbox details.</a></p></article></div>
           </section>
 
           <section class="final-cta section-wrap"><div><p class="eyebrow"><span></span> Open a blank canvas</p><h2>Your next idea can be running in seconds.</h2><p>No setup. No account. Just the browser and a little curiosity.</p></div><a class="primary-cta" href="/app">Start coding for free <span aria-hidden="true">→</span></a></section>
         </main>
 
-        <footer class="site-footer"><div class="section-wrap footer-inner"><div><a class="site-brand" href="/"><span class="site-brand-mark">✦</span><span>Myztic <strong>Playground</strong></span></a><p>A small, fast place to build for the open web.</p></div><nav aria-label="Footer navigation"><a href="/app">Playground</a><a href="/examples">Examples</a><a href="/security">Security</a><a href="https://myztic.dev">Myzticdev ↗</a></nav></div><div class="section-wrap footer-bottom"><span>© 2026 Myzticdev</span><span>Built with care for the open web.</span></div></footer>
+        <footer class="site-footer"><div class="section-wrap footer-inner"><div><a class="site-brand" href="/"><span class="site-brand-mark">✦</span><span>Myztic <strong>Playground</strong></span></a><p>A free, local-first place to build for the open web.</p></div><nav aria-label="Footer navigation"><a href="/app">Playground</a><a href="/examples">Examples</a><a href="/about">About</a><a href="/privacy">Privacy</a><a href="/security">Security</a><a href="/changelog">Changelog</a><a href="https://github.com/myzticdev/myztic-playground">GitHub ↗</a></nav></div><div class="section-wrap footer-bottom"><span>© 2026 Myzticdev</span><span>Free. No signup. Built for the open web.</span></div></footer>
       </div>
     </div>
     <script type="module" src="/src/main.tsx"></script>

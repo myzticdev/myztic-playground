@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://playground.myztic.dev/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://playground.myztic.dev/app</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://playground.myztic.dev/examples</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://playground.myztic.dev/security</loc><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://playground.myztic.dev/</loc><lastmod>2026-07-22</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://playground.myztic.dev/app</loc><lastmod>2026-07-22</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://playground.myztic.dev/examples</loc><lastmod>2026-07-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://playground.myztic.dev/for-teachers</loc><lastmod>2026-07-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://playground.myztic.dev/learn/html-css-js-playground</loc><lastmod>2026-07-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://playground.myztic.dev/export-html-css-js-zip</loc><lastmod>2026-07-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://playground.myztic.dev/alternatives/codepen</loc><lastmod>2026-07-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://playground.myztic.dev/alternatives/jsfiddle</loc><lastmod>2026-07-22</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://playground.myztic.dev/safe-javascript-playground</loc><lastmod>2026-07-22</lastmod><changefreq>yearly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://playground.myztic.dev/security</loc><lastmod>2026-07-22</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://playground.myztic.dev/privacy</loc><lastmod>2026-07-22</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://playground.myztic.dev/about</loc><lastmod>2026-07-22</lastmod><changefreq>yearly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://playground.myztic.dev/changelog</loc><lastmod>2026-07-22</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>

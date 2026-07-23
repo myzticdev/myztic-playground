@@ -58,3 +58,27 @@ test('exposes the requested supporting routes', async ({ page }) => {
   await page.goto('/app')
   await expect(page.getByRole('button', { name: 'Run' })).toBeVisible()
 })
+
+test('publishes GEO guides with route-specific metadata and visible FAQs', async ({ page, request }) => {
+  const routes = [
+    ['/for-teachers', /for teachers/i],
+    ['/learn/html-css-js-playground', /practice HTML, CSS and JavaScript/i],
+    ['/export-html-css-js-zip', /export HTML, CSS and JavaScript/i],
+    ['/alternatives/codepen', /vs CodePen/i],
+    ['/alternatives/jsfiddle', /vs JSFiddle/i],
+    ['/privacy', /stays local/i],
+    ['/about', /open web/i],
+    ['/changelog', /What’s new/i],
+  ]
+
+  for (const [route, heading] of routes) {
+    await page.goto(route)
+    await expect(page.getByRole('heading', { level: 1 })).toContainText(heading)
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `https://playground.myztic.dev${route}`)
+    await expect(page.getByRole('heading', { name: 'Frequently asked questions' })).toBeVisible()
+  }
+
+  const [sitemap, llms] = await Promise.all([request.get('/sitemap.xml'), request.get('/llms.txt')])
+  expect(await sitemap.text()).toContain('https://playground.myztic.dev/alternatives/codepen')
+  expect(await llms.text()).toContain('free, no-signup HTML, CSS, and JavaScript playground')
+})
