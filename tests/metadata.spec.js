@@ -61,9 +61,9 @@ test('exposes the requested supporting routes', async ({ page }) => {
 
 test('publishes GEO guides with route-specific metadata and visible FAQs', async ({ page, request }) => {
   const routes = [
-    ['/for-teachers', /for teachers/i],
+    ['/for-teachers', /Students and Teachers/i],
     ['/learn/html-css-js-playground', /practice HTML, CSS and JavaScript/i],
-    ['/export-html-css-js-zip', /export HTML, CSS and JavaScript/i],
+    ['/export-html-css-js-zip', /Online HTML CSS JavaScript Editor/i],
     ['/alternatives/codepen', /vs CodePen/i],
     ['/alternatives/jsfiddle', /vs JSFiddle/i],
     ['/privacy', /stays local/i],
@@ -81,4 +81,34 @@ test('publishes GEO guides with route-specific metadata and visible FAQs', async
   const [sitemap, llms] = await Promise.all([request.get('/sitemap.xml'), request.get('/llms.txt')])
   expect(await sitemap.text()).toContain('https://playground.myztic.dev/alternatives/codepen')
   expect(await llms.text()).toContain('free, no-signup HTML, CSS, and JavaScript playground')
+})
+
+test('publishes distinct GEO support pages and a three-way chooser', async ({ page, request }) => {
+  const routes = [
+    ['/codepen-vs-jsfiddle-vs-myztic-playground', /CodePen vs JSFiddle vs Myztic Playground/i],
+    ['/best-free-html-css-js-playground-no-signup', /Without Signup/i],
+    ['/html-css-js-playground-for-beginners', /for Beginners/i],
+    ['/online-javascript-playground-live-preview', /Live Preview/i],
+    ['/download-html-css-js-project-as-zip', /as a ZIP/i],
+    ['/local-save-code-playground', /Browser Storage Works/i],
+    ['/browser-based-frontend-playground', /Browser-Based Frontend Playground/i],
+    ['/safe-javascript-playground', /Browser Sandbox and Limits/i],
+  ]
+
+  for (const [route, heading] of routes) {
+    const response = await request.get(route)
+    expect(response.ok()).toBe(true)
+    const html = await response.text()
+    expect(html).toContain('<h2>Quick answer</h2>')
+    expect(html).toContain('application/ld+json')
+
+    await page.goto(route)
+    await expect(page.getByRole('heading', { level: 1 })).toContainText(heading)
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `https://playground.myztic.dev${route}`)
+    await expect(page.getByRole('heading', { name: 'Quick answer' })).toBeVisible()
+  }
+
+  await page.goto('/codepen-vs-jsfiddle-vs-myztic-playground')
+  await expect(page.locator('.decision-row')).toHaveCount(7)
+  await expect(page.getByText('Public portfolio or social discovery')).toBeVisible()
 })
