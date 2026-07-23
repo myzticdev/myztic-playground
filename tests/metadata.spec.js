@@ -45,6 +45,11 @@ test('exposes the requested supporting routes', async ({ page }) => {
   await page.goto('/examples')
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Start with something small')
   await expect(page.locator('.example-card')).toHaveCount(6)
+  await expect(page.getByRole('link', { name: /Open code in playground/ }).first()).toHaveAttribute('href', '/app?example=gradient-card')
+
+  await page.goto('/app?example=counter')
+  await expect(page.getByRole('textbox', { name: 'HTML code' })).toHaveValue(/DAILY MOMENTUM/)
+  await expect(page.frameLocator('iframe[title="User code preview"]').locator('#count')).toHaveText('42')
 
   await page.goto('/security')
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Your code stays contained')
